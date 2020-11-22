@@ -1,5 +1,3 @@
-maxInventory(100).
-
 /** enemy(id, name, level, hp, attack, defense, gold_drop) **/
 enemy(1, slime, 1, 100, 10, 10, 100).
 enemy(2, goblin, 10,  150, 20, 15, 150).
@@ -10,9 +8,9 @@ enemy(4, undead, 35 , 350, 50, 30, 250).
 boss(1, evil_natural_water, 20, 500, 75, 25, 1000, magic).
 boss(2, goblin_paladin, 60, 2500, 20, 75, 2000, none).
 boss(3, great_wolf_sif, 60, 1500, 100, 50, 3000, physical).
-boss(4, undead_dragon, 60, 3000, 125, 100 5000, none).
+boss(4, undead_dragon, 60, 3000, 125, 100, 5000, none).
 
-/** player(id, name, level, hp, attack, defense) **/
+/** player(id, class, level, hp, attack, defense) **/
 player(1, swordsman, 1, 500, 30, 50).
 player(2, archer, 1, 300, 50, 25).
 player(3, sorcerer, 1, 300, 50, 25).
@@ -23,7 +21,6 @@ harga(2, potion, 100).
 harga(3, dark_sigil, 1000).
 
 /** items(id, class, item_name, hp_boost, attack_boost, defense_boost) **/
-items(0, _, potion, 0, 0, 0).
 items(1, swordsman, plastic_sword, 0, 5, 0).
 items(2, swordsman, wooden_sword, 0, 10, 0).
 items(3, swordsman, steel_sword, 0, 20, 0).
@@ -51,6 +48,8 @@ items(24, sorcerer, wooden_robe, 50, 0, 10).
 items(25, sorcerer, steel_robe, 75, 0, 15).
 items(26, sorcerer, golden_robe, 100, 0, 25).
 items(27, sorcerer, crystal_robe, 200, 0, 50).
+items(28, _, potion, 0, 0, 0).
+items(29, _, none, 0, 0, 0).
 
 
 /** playerSpecialAttack(job, name) **/

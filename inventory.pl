@@ -3,14 +3,6 @@
 
 maxInventory(100).
 
-invalidItem(Item, ItemList) :-
-	(\+memberchk(Item, ItemList) -> write('Kamu tidak memiliki item tersebut'), nl).
-
-invalidNumber(Num, Item) :-
-	inventoryData(NumItem, Item),
-	(Num > NumItem -> (write('Item kamu tidak mencukupi'), nl);
-	Num < 0 -> (write('Item yang kamu buang tidak boleh negatif'), nl)).
-
 initInventory :-
 	asserta(inventoryData(0, plastic_sword)),
 	asserta(inventoryData(0, wooden_sword)),
@@ -112,7 +104,7 @@ addInventory(_) :-
 	!, fail.
 
 addInventory(ID) :-
-	items(ID, _, Item, _, _, _).
+	items(ID, _, Item, _, _, _),
 	inventoryData(Num, Item),
 	Newnum is Num + 1,
 	retract(inventoryData(Num, Item)),
@@ -134,11 +126,19 @@ writeInventory([Num|Tail1], [Item|Tail2]) :-
 	writeInventory(Tail1, Tail2).
 
 inventory :-
+	\+init(_),
+	write('Game belum dimulai'),!.
+inventory :-
+	init(_),
 	inventoryList(NumHeldList, ItemList),
 	write('Isi inventory: '), nl,
 	writeInventory(NumHeldList, ItemList).
 
 drop :-
+	\+init(_),
+	write('Game belum dimulai'),!.
+drop :-
+	init(_),
 	inventoryList(_, ItemList),
 	write('Pilih item yang ingin kamu buang!'), nl,
 	inventory,
@@ -153,6 +153,6 @@ drop :-
 		(Num < 0 -> write('Kamu tidak dapat membuang barang dengan nilai negatif'), nl, fail;
 		Num > ItemNum -> write('Kamu tidak dapat membuang barang melebihi yang kamu miliki'), nl, fail;
 	(Num >= 0, Num =< ItemNum),
-	call(dropFunc(Item, Num)))).
+	call(dropFunc(Item, Num))), !).
 
 
