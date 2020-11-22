@@ -94,7 +94,8 @@ countInventory(Total) :-
 
 isFull :-
 	countInventory(Number),
-	Number == 100.
+	maxInventory(Max),
+	Number == Max.
 
 addInventory(_) :-
 	countInventory(Number),
@@ -102,7 +103,8 @@ addInventory(_) :-
 	Number >= Max,
 	write('Inventory sudah penuh'),
 	!, fail.
-
+addInventory(ID) :-
+	ID =:= 29.
 addInventory(ID) :-
 	items(ID, _, Item, _, _, _),
 	inventoryData(Num, Item),

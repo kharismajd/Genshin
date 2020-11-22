@@ -5,6 +5,7 @@
 
 :- include('fakta.pl').
 :- include('inventory.pl').
+:- include('shop.pl').
 
 gold(1000).
 
@@ -37,7 +38,8 @@ classSelect :-
 		!
 	;	write('Silakan pilih yang ada di list.'), nl, 
 		fail
-	)).
+	)
+	).
 
 start :-
 	init(_),
