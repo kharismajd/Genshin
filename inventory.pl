@@ -111,7 +111,8 @@ addInventory(_) :-
 	write('Inventory sudah penuh'),
 	!, fail.
 
-addInventory(Item) :-
+addInventory(ID) :-
+	items(ID, _, Item, _, _, _).
 	inventoryData(Num, Item),
 	Newnum is Num + 1,
 	retract(inventoryData(Num, Item)),
