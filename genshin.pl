@@ -6,6 +6,7 @@
 :- include('inventory.pl').
 :- include('shop.pl').
 :- include('battle.pl').
+:- include('explore.pl').
 
 help :-
 	write('Commands: '), nl,
@@ -34,6 +35,7 @@ classSelect :-
 		write('Kamu telah memilih '), write(Class), nl,
 		asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, 1000, 0)),
 		asserta(equiped(none, none, none)),
+		asserta(koord(0,0)), /* Ganti dengan koordinat awal */
 		!
 	;	write('Silakan pilih yang ada di list.'), nl, 
 		fail
