@@ -105,7 +105,7 @@ addInventory(_) :-
 addInventory(ID) :-
 	ID = 29.
 addInventory(ID) :-
-	items(ID, _, Item, _, _, _),
+	items(ID, _, _, Item, _, _, _),
 	inventoryData(Num, Item),
 	Newnum is Num + 1,
 	retract(inventoryData(Num, Item)),
@@ -176,7 +176,7 @@ equip :-
 	write('Game belum dimulai').
 equip :-
 	init(_),
-	equipmentList(_, EquipmentList),
+	equipmentList(_, EquipmentList, _),
 	playerStatus(_, Class, _, _, _, _, _, _),
 	write('Ketik equipment yang ingin dipakai'), nl,
 	printEquipment,

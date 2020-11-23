@@ -31,7 +31,7 @@ shop :-
 		playerStatus(_, _, _, _, _, _, X, _),
 		(X >= 200 ->
 			random(1, 27, ID),
-			items(ID, _, ItemName, _, _, _),
+			items(ID, _, _, ItemName, _, _, _),
 			addInventory(ID),
 			NewGold is X - 300,
 			retract(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, X, EXP)),
