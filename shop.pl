@@ -1,6 +1,5 @@
 :- dynamic(isAroundShop/1).
 :- dynamic(isInteracting/1).
-:- dynamic(isFighting/1).
 
 isAroundShop(1). /** Nanti hapus kalau udah ada map **/
 
@@ -29,14 +28,14 @@ shop :-
 	repeat,
 	(read(Input),
 	(Input =:= 1 ->
-		gold(X),
+		playerStatus(_, _, _, _, _, _, X, _),
 		(X >= 200 ->
 			random(1, 27, ID),
 			items(ID, _, ItemName, _, _, _),
 			addInventory(ID),
 			NewGold is X - 300,
-			retract(gold(_)),
-			asserta(gold(NewGold)),
+			retract(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, X, EXP)),
+			asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, NewGold, EXP)),
 			write('Anda mendapatkan '), write(ItemName), nl,
 			(isFull -> 
 				write('Inventory kamu penuh, terima kasih sudah berbelanja'), nl, !
@@ -55,12 +54,12 @@ shop :-
 		)
 	;
 	Input =:= 2 ->
-		gold(X),
+		playerStatus(_, _, _, _, _, _, X, _),
 		(X >= 200 ->
 			addInventory(28),
 			NewGold is X - 200,
-			retract(gold(_)),
-			asserta(gold(NewGold)),
+			retract(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, X, EXP)),
+			asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, NewGold, EXP)),
 			write('Anda membeli potion'), nl,
 			(isFull ->
 				write('Inventory kamu penuh, terima kasih sudah berbelanja'), nl, !
@@ -89,7 +88,7 @@ shop :-
 	).
 
 printShop :-
-	playerStatus(_, Class, _, _, _, _),
+	playerStatus(_, Class, _, _, _, _, _, _),
 	write('Selamat datang di shop, tuan '), write(Class), write('. anda ingin membeli apa?'), nl,
 	write('1. Gacha'), nl,
 	write('2. Potion'), nl,
