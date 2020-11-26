@@ -32,6 +32,12 @@ print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+2, !, write('#').
 
 print_koord(X,Y) :- special_lokasi(X,Y,Z), !, write(Z).
 
+print_koord(X,Y) :- 
+	koord(XPlayer, YPlayer),
+	X == XPlayer,
+	Y == YPlayer, 
+	write('P').
+
 print_koord(X,Y) :-
     X > 0,
     Y > 0,

@@ -7,6 +7,9 @@
 :- public(s/0).
 :- public(d/0).
 
+initKoord :-
+	asserta(koord(10, 2)).
+
 w :- koord(X,Y),
 	X_ is X-1,
 	isValid(X_,Y), !,
@@ -46,56 +49,56 @@ isAroundShop :-
 	koord(X, Y),
 	(
 		XShop1 is XShop + 1,
-		XShop1 is XShop + 1,
+		YShop1 is YShop + 1,
 		X == XShop1,
 		Y == YShop1
 	)
 	;
 	(
 		XShop2 is XShop + 1,
-		XShop2 is XShop,
+		YShop2 is YShop,
 		X == XShop2,
 		Y == YShop2
 	)
 	;
 	(
 		XShop3 is XShop + 1,
-		XShop3 is XShop - 1,
+		YShop3 is YShop - 1,
 		X == XShop3,
 		Y == YShop3
 	)
 	;
 	(
 		XShop4 is XShop,
-		XShop4 is XShop + 1,
+		YShop4 is YShop + 1,
 		X == XShop4,
 		Y == YShop4
 	)
 	;
 	(
 		XShop5 is XShop,
-		XShop5 is XShop - 1,
+		YShop5 is YShop - 1,
 		X == XShop5,
 		Y == YShop5
 	)
 	;
 	(
 		XShop6 is XShop - 1,
-		XShop6 is XShop + 1,
+		YShop6 is YShop + 1,
 		X == XShop6,
 		Y == YShop6
 	)
 	;
 	(
 		XShop7 is XShop - 1,
-		XShop7 is XShop,
+		YShop7 is YShop,
 		X == XShop7,
 		Y == YShop7
 	)
 	;
 	(
 		XShop8 is XShop - 1,
-		XShop8 is XShop - 1,
+		YShop8 is YShop - 1,
 		X == XShop8,
 		Y == YShop8
 	).
@@ -105,56 +108,56 @@ isAroundBoss :-
 	koord(X, Y),
 	(
 		XBoss1 is XBoss + 1,
-		XBoss1 is XBoss + 1,
+		YBoss1 is YBoss + 1,
 		X == XBoss1,
 		Y == YBoss1
 	)
 	;
 	(
 		XBoss2 is XBoss + 1,
-		XBoss2 is XBoss,
+		YBoss2 is YBoss,
 		X == XBoss2,
 		Y == YBoss2
 	)
 	;
 	(
 		XBoss3 is XBoss + 1,
-		XBoss3 is XBoss - 1,
+		YBoss3 is YBoss - 1,
 		X == XBoss3,
 		Y == YBoss3
 	)
 	;
 	(
 		XBoss4 is XBoss,
-		XBoss4 is XBoss + 1,
+		YBoss4 is YBoss + 1,
 		X == XBoss4,
 		Y == YBoss4
 	)
 	;
 	(
 		XBoss5 is XBoss,
-		XBoss5 is XBoss - 1,
+		YBoss5 is YBoss - 1,
 		X == XBoss5,
 		Y == YBoss5
 	)
 	;
 	(
 		XBoss6 is XBoss - 1,
-		XBoss6 is XBoss + 1,
+		YBoss6 is YBoss + 1,
 		X == XBoss6,
 		Y == YBoss6
 	)
 	;
 	(
 		XBoss7 is XBoss - 1,
-		XBoss7 is XBoss,
+		YBoss7 is YBoss,
 		X == XBoss7,
 		Y == YBoss7
 	)
 	;
 	(
 		XBoss8 is XBoss - 1,
-		XBoss8 is XBoss - 1,
+		YBoss8 is YBoss - 1,
 		X == XBoss8,
 		Y == YBoss8
 	).
@@ -164,56 +167,56 @@ isAroundQuest :-
 	koord(X, Y),
 	(
 		XQuest1 is XQuest + 1,
-		XQuest1 is XQuest + 1,
+		YQuest1 is YQuest + 1,
 		X == XQuest1,
 		Y == YQuest1
 	)
 	;
 	(
 		XQuest2 is XQuest + 1,
-		XQuest2 is XQuest,
+		YQuest2 is YQuest,
 		X == XQuest2,
 		Y == YQuest2
 	)
 	;
 	(
 		XQuest3 is XQuest + 1,
-		XQuest3 is XQuest - 1,
+		YQuest3 is YQuest - 1,
 		X == XQuest3,
 		Y == YQuest3
 	)
 	;
 	(
 		XQuest4 is XQuest,
-		XQuest4 is XQuest + 1,
+		YQuest4 is YQuest + 1,
 		X == XQuest4,
 		Y == YQuest4
 	)
 	;
 	(
 		XQuest5 is XQuest,
-		XQuest5 is XQuest - 1,
+		YQuest5 is YQuest - 1,
 		X == XQuest5,
 		Y == YQuest5
 	)
 	;
 	(
 		XQuest6 is XQuest - 1,
-		XQuest6 is XQuest + 1,
+		YQuest6 is YQuest + 1,
 		X == XQuest6,
 		Y == YQuest6
 	)
 	;
 	(
 		XQuest7 is XQuest - 1,
-		XQuest7 is XQuest,
+		YQuest7 is YQuest,
 		X == XQuest7,
 		Y == YQuest7
 	)
 	;
 	(
 		XQuest8 is XQuest - 1,
-		XQuest8 is XQuest - 1,
+		YQuest8 is YQuest - 1,
 		X == XQuest8,
 		Y == YQuest8
 	).
