@@ -68,81 +68,81 @@ printMAP(X,Y) :-
 /*Lokasi Special*/
 printMAP(X, Y) :- 
         map_size(T, L),
-				X < T + 1,
-				X > 0,
-				Y < L + 1,
-				Y > 0,
-				special_lokasi(X, Y, 'P'),
-				special_lokasi(X, Y, 'Q'), !,
-				write('P'),
-				write(' '),
-				Z is X+1,
-				printMAP(Z, Y).
+		X < T + 1,
+		X > 0,
+		Y < L + 1,
+		Y > 0,
+		special_lokasi(X, Y, 'P'),
+		special_lokasi(X, Y, 'Q'), !,
+		write('P'),
+		write(' '),
+		Z is X+1,
+		printMAP(Z, Y).
 
 /*Lokasi Special*/
 printMAP(X, Y) :- 
         map_size(T, L),
-				X < T + 1,
-				X > 0,
-				Y < L + 1,
-				Y > 0,
-				special_lokasi(X, Y, 'D'),
-				write('D'),
-				write(' '),
-				Z is X+1,
-				printMAP(Z, Y).
+		X < T + 1,
+		X > 0,
+		Y < L + 1,
+		Y > 0,
+		special_lokasi(X, Y, 'D'),
+		write('D'),
+		write(' '),
+		Z is X+1,
+		printMAP(Z, Y).
 
 /*Lokasi Special*/
 printMAP(X, Y) :- 
         map_size(T, L),
-				X < T + 1,
-				X > 0,
-				Y < L + 1,
-				Y > 0,
-				special_lokasi(X, Y, 'S'),
-				write('S'),
-				write(' '),
-				Z is X+1,
-				printMAP(Z, Y).
+		X < T + 1,
+		X > 0,
+		Y < L + 1,
+		Y > 0,
+		special_lokasi(X, Y, 'S'),
+		write('S'),
+		write(' '),
+		Z is X+1,
+		printMAP(Z, Y).
 
 /*Lokasi Special*/
 printMAP(X, Y) :- 
         map_size(T, L),
-				X < T + 1,
-				X > 0,
-				Y < L + 1,
-				Y > 0,
-				special_lokasi(X, Y, 'Q'),
-				write('Q'),
-				write(' '),
-				Z is X+1,
-				printMAP(Z, Y).
+		X < T + 1,
+		X > 0,
+		Y < L + 1,
+		Y > 0,
+		special_lokasi(X, Y, 'Q'),
+		write('Q'),
+		write(' '),
+		Z is X+1,
+		printMAP(Z, Y).
 
 /*Lokasi Special*/
 printMAP(X, Y) :- 
         map_size(T, L),
-				X < W + 1,
-				X > 0,
-				Y < H + 1,
-				Y > 0,
-				special_lokasi(X, Y, Obj), !,
-				write(Obj),
-				write(' '),
-				Z is X+1,
-				printMAP(Z, Y).
+		X < W + 1,
+		X > 0,
+		Y < H + 1,
+		Y > 0,
+		special_lokasi(X, Y, Obj), !,
+		write(Obj),
+		write(' '),
+		Z is X+1,
+		printMAP(Z, Y).
 
 /*Lokasi Special*/
 /* Empty */
 printMAP(X, Y) :- 
         map_size(T, L),
-				X < W + 1,
-				X > 0,
-				Y < H + 1,
-				Y > 0,
-				(\+ special_lokasi(X, Y, _)),
-				write('-'),
-				Z is X+1,
-				printMAP(Z, Y).
+		X < W + 1,
+		X > 0,
+		Y < H + 1,
+		Y > 0,
+		(\+ special_lokasi(X, Y, _)),
+		write('-'),
+		Z is X+1,
+		printMAP(Z, Y).
 
 
 
