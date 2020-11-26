@@ -8,9 +8,9 @@ enemy(4, undead, 1, 275, 10, 22, 250, 250).
 boss(1, undead_dragon, 30, 3000, 125, 100).
 
 /** player(id, class, level, hp, attack, defense) **/
-player(1, swordsman, 1, 500, 100, 50).
-player(2, archer, 1, 300, 50, 25).
-player(3, sorcerer, 1, 300, 50, 25).
+player(1, swordsman, 1, 500, 40, 50).
+player(2, archer, 1, 400, 50, 25).
+player(3, sorcerer, 1, 400, 50, 25).
 
 /** harga(id, item_name, harga) **/
 harga(1, gacha, 100).

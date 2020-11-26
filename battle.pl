@@ -7,8 +7,10 @@
 :- dynamic(playerStatus/8).
 :- dynamic(peluangRun/1).
 :- dynamic(isFightingBoss/1).
-:- dynamic(isOnQuest/4).
+:- dynamic(isOnQuest/5).
 
+initQuest :-
+	asserta(isOnQuest(1, 0, 0, 0, 0)).
 
 /** Player level 1-10 **/
 enemyTriggered :-
@@ -334,7 +336,7 @@ attackaftermath :-
 	!.
 
 attackaftermath :-
-	\+ isOnQuest(_, _, _, _),
+	\+ isOnQuest(_, _, _, _, _),
 	triggeredEnemy(Name, _, _, HP, _, _, _, _),
 	HP =< 0,
 	write(Name), write(' telah dikalahkan'), nl, nl,
@@ -346,9 +348,12 @@ attackaftermath :-
 	;
 	enemySkillCooldown(_) ->
 		retract(enemySkillCooldown(_))
+	;
+		inventoryData(_, _)
 	),
 	(isFightingBoss(_) ->
 		bossDefeated,
+		retract(isFightingBoss(_)),
 		!
 	;
 		retract(triggeredEnemy(_, _, _, _, _, _, Gold, EXP)),
@@ -362,75 +367,34 @@ attackaftermath :-
 	!.
 
 attackaftermath :-
-	isOnQuest(_, _, _, _),
+	isOnQuest(W, X, Y, Z, GoldQuest),
 	triggeredEnemy(Name, _, _, HP, _, _, _, _),
 	HP =< 0,
-	write(Name), write(' telah dikalahkan'), nl,
+	write(Name), write(' telah dikalahkan'), nl, nl,
 	retract(isFighting(_)),
 	retract(isEnemyAlive(_)),
 	retract(cannotRun(_)),
-	(Name == slime ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewW is W - 1,
-		(NewW >= 0 ->
-			NewGold is Gold + 50
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(NewW, X, Y, NewGold))
-	;
-	Name == goblin ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewX is X - 1,
-		(NewX >= 0 ->
-			NewGold is Gold + 100
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(W, NewX, Y, Z, Gold))
-	;
-	Name == wolf ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewY is Y - 1,
-		(NewY >= 0 ->
-			NewGold is Gold + 150
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(W, X, NewY, Z, Gold))
-	;
-	Name == undead ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewZ is Z - 1,
-		(NewZ >= 0 ->
-			NewGold is Gold + 200
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(W, X, Y, NewZ, Gold))
-	),
-
-	isOnQuest(W, X, Y, Z, Gold),
-	(W =< 0, X =< 0, Y =< 0, Z =< 0 ->
-		questDone
-	),
 	(playerSkillCooldown(_) ->
 		retract(playerSkillCooldown(_))
 	;
 	enemySkillCooldown(_) ->
 		retract(enemySkillCooldown(_))
+	;
+		inventoryData(_, _)
 	),
 	(isFightingBoss(_) ->
 		bossDefeated,
+		retract(isFightingBoss(_)),
 		!
 	;
 		retract(triggeredEnemy(_, _, _, _, _, _, Gold, EXP)),
-		retract(playerStatus(Lv, Class, MaxHP, HP, Attack, Defense, PlayerGold, PlayerEXP)),
+		retract(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, PlayerGold, PlayerEXP)),
 		NewPlayerGold is PlayerGold + Gold,
 		NewPlayerEXP is PlayerEXP + EXP,
-		asserta(playerStatus(Lv, Class, MaxHP, HP, Attack, Defense, NewPlayerGold, NewPlayerEXP)),
+		asserta(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, NewPlayerGold, NewPlayerEXP)),
 		write('Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
-		write('Kamu mendapatkan '), write(Gold), write(' Gold'), nl
+		write('Kamu mendapatkan '), write(EXP), write(' Exp'), nl, nl,
+		questProgress(W, X, Y, Z, GoldQuest, Name)
 	),
 	!.
 
@@ -524,13 +488,17 @@ enemyattackaftermath :-
 	retract(isFighting(_)),
 	retract(isEnemyAlive(_)),
 	retract(cannotRun(_)),
+	write('Yah, kamu telah mati di dunia ini...'), nl,
+	write('Kamu akan bereinkarnasi ke dunia lain'), nl,
+	write('Selamat tinggal'), nl,
 	(playerSkillCooldown(_) ->
 		retract(playerSkillCooldown(_))
 	;
 	enemySkillCooldown(_) ->
 		retract(enemySkillCooldown(_))
+	;
+		inventoryData(_, _)
 	),
-	lose,
 	!.
 
 questDone :-
@@ -546,18 +514,54 @@ bossDefeated :-
 	write('WOOOW, selamat! kamu telah mengalahkan boss dari game ini'), nl,
 	write('Para monster tidak akan bisa spawn lagi...'), nl,
 	write('Mungkin kehidupan setelah ini akan membosankan'), nl,
-	write('Ketik start untuk merevive boss lagi'), nl,
 	quit,
 	!.
 
-lose :-
-	write('Yah, kamu telah mati di dunia ini...'), nl,
-	write('Kamu akan bereinkarnasi ke dunia lain'), nl,
-	write('Selamat tinggal'), nl,
-	quit,
-	fail,
-	!.
-
+questProgress(W, X, Y, Z, Gold, Name) :-
+	(Name == slime ->
+		retract(isOnQuest(W, X, Y, Z, Gold)),
+		NewW is W - 1,
+		(NewW >= 0 ->
+			NewGold is Gold + 50
+		;
+			NewGold is Gold
+		),
+		asserta(isOnQuest(NewW, X, Y, Z, NewGold))
+	;
+	Name == goblin ->
+		retract(isOnQuest(W, X, Y, Z, Gold)),
+		NewX is X - 1,
+		(NewX >= 0 ->
+			NewGold is Gold + 100
+		;
+			NewGold is Gold
+		),
+		asserta(isOnQuest(W, NewX, Y, Z, Gold))
+	;
+	Name == wolf ->
+		retract(isOnQuest(W, X, Y, Z, Gold)),
+		NewY is Y - 1,
+		(NewY >= 0 ->
+			NewGold is Gold + 150
+		;
+			NewGold is Gold
+		),
+		asserta(isOnQuest(W, X, NewY, Z, Gold))
+	;
+	Name == undead ->
+		retract(isOnQuest(W, X, Y, Z, Gold)),
+		NewZ is Z - 1,
+		(NewZ >= 0 ->
+			NewGold is Gold + 200
+		;
+			NewGold is Gold
+		),
+		asserta(isOnQuest(W, X, Y, NewZ, Gold))
+	),
+	isOnQuest(WNew, XNew, YNew, ZNew, _),
+	((WNew =< 0, XNew =< 0, YNew =< 0, ZNew =< 0) ->
+		questDone
+	).
 
 
 
