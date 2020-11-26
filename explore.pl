@@ -1,3 +1,4 @@
+  
 :- dynamic(koord/2). /** koord(X, Y) **/
 :- dynamic(action/0).
 

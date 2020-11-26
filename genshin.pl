@@ -6,10 +6,12 @@
 :- include('inventory.pl').
 :- include('shop.pl').
 :- include('explore.pl').
+:- include('battle.pl').
+:- include('map.pl').
 
 help :-
-	write('######################################################################'),
-	write('#                             ~Genshin Sekai~                        #'),
+	write('######################################################################'), nl,
+	write('#                             ~Genshin Sekai~                        #'), nl,
 	write('# Commands:                                                          #'), nl,
 	write('# 1. start      : Untuk memulai petualanganmu                        #'), nl,
 	write('# 2. map        : Menampilkan peta                                   #'), nl,
@@ -20,9 +22,9 @@ help :-
 	write('# 7. w,s,a,d    : Bergerak                                           #'), nl,
 	write('# 8. inventory  : Melihat inventory                                  #'), nl,
 	write('# 9. drop       : Membuang barang yang ada di inventory              #'), nl,
-	write('# 10. usePotion : Memakai potion untuk menambah HP                   #'), nl,
+	write('# 10. heal      : Memakai potion untuk menambah HP                   #'), nl,
 	write('# Semua commands harus diakhiri dengan tanda titik (.)               #'), nl,
-	write('######################################################################').
+	write('######################################################################'), nl.
 
 classSelect :-
 	write('Pilih class yang anda inginkan (tulis angka diakhiri titik): '), nl,

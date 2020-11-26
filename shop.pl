@@ -1,6 +1,5 @@
 :- dynamic(isAroundShop/1).
 :- dynamic(isInteracting/1).
-:- dynamic(isFighting/1).
 
 isAroundShop(1). /** Nanti hapus kalau udah ada map **/
 
@@ -9,7 +8,7 @@ shop :-
 	write('Game belum dimulai'), nl.
 
 shop :-
-	isFighting(_),
+	isEnemyAlive(_),
 	write('Kamu sedang melawan musuh'), nl.
 
 shop :-

@@ -1,17 +1,14 @@
 /** enemy(id, name, level, hp, attack, defense, gold_drop, exp_drop) **/
-enemy(1, slime, 1, 100, 10, 10, 100, 100).
-enemy(2, goblin, 10,  150, 20, 15, 150, 150).
-enemy(3, wolf, 20, 250, 30, 20, 200, 200).
-enemy(4, undead, 35 , 350, 50, 30, 250, 250).
+enemy(1, slime, 1, 125, 20, 10, 100, 100).
+enemy(2, goblin, 1, 200, 15, 15, 150, 150).
+enemy(3, wolf, 1, 175, 30, 30, 12, 200).
+enemy(4, undead, 1, 275, 10, 22, 250, 250).
 
-/** boss(id, name, level, hp, attack, defense, gold_drop, weakness) **/
-boss(1, evil_natural_water, 20, 500, 75, 25, 1000, magic).
-boss(2, goblin_paladin, 60, 2500, 20, 75, 2000, none).
-boss(3, great_wolf_sif, 60, 1500, 100, 50, 3000, physical).
-boss(4, undead_dragon, 60, 3000, 125, 100, 5000, none).
+/** boss(id, name, level, hp, attack, defense) **/
+boss(1, undead_dragon, 30, 3000, 125, 100).
 
 /** player(id, class, level, hp, attack, defense) **/
-player(1, swordsman, 1, 500, 30, 50).
+player(1, swordsman, 1, 500, 100, 50).
 player(2, archer, 1, 300, 50, 25).
 player(3, sorcerer, 1, 300, 50, 25).
 
@@ -52,12 +49,16 @@ items(28, all, consumables, potion, 0, 0, 0).
 items(29, _, _, none, 0, 0, 0).
 
 /** playerSpecialAttack(job, name) **/
-playerSpecialAttack(swordsman, pukul).
-playerSpecialAttack(archer, tendang).
-playerSpecialAttack(swordsman, hujan_air).
+playerSkill(swordsman, pukul).
+playerSkill(archer, tendang).
+playerSkill(swordsman, hujan_air).
 
 /** enemySpecialAttack(enemy, name) **/
-/** nanti dibuat **/
+enemySkill(slime, smol_water_cannon).
+enemySkill(goblin, pentung).
+enemySkill(wolf, howl_castle).
+enemySkill(undead, tampol).
+enemySkill(undead_dragon, bonkah_bengu).
 
 /** Rencana rules **/
 /** levelUp(?) :- **/

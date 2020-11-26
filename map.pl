@@ -1,3 +1,4 @@
+
 :- dynamic(special_lokasi/3).
 
 :- public(map_size/2).
