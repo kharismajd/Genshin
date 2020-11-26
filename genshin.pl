@@ -62,9 +62,9 @@ status :- /** Kurang level up **/
 	write('Defense : '), write(Defense), nl,
 	write('Exp     : '), write(EXP), nl,
 	write('Gold    : '), write(Gold), nl,
-	write('Equiped weapon    : '), write(Weapon), nl,
-	write('Equiped armor     : '), write(Armor), nl,
-	write('Equiped accessory : '), write(Accessory), nl.
+	write('Equipped weapon    : '), write(Weapon), nl,
+	write('Equipped armor     : '), write(Armor), nl,
+	write('Equipped accessory : '), write(Accessory), nl.
 
 
 quit :-
