@@ -8,7 +8,7 @@ shop :-
 	write('Game belum dimulai'), nl.
 
 shop :-
-	isEnemyAlive(_),
+	isFighting(_),
 	write('Kamu sedang melawan musuh'), nl.
 
 shop :-
@@ -29,7 +29,7 @@ shop :-
 	(read(Input),
 	(Input =:= 1 ->
 		playerStatus(_, _, _, _, _, _, X, _),
-		(X >= 200 ->
+		(X >= 300 ->
 			random(1, 27, ID),
 			items(ID, _, _, ItemName, _, _, _),
 			addInventory(ID),

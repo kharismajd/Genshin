@@ -59,13 +59,14 @@ start :-
 
 status :- /** Kurang level up **/
 	playerStatus(Level, Class, MaxHP, HP, Attack, Defense, Gold, EXP),
+	level(Level, MaxEXP),
 	equiped(Weapon, Armor, Accessory),
 	write('Class   : '), write(Class), nl,
 	write('Level   : '), write(Level), nl,
 	write('Health  : '), write(HP), write('/'), write(MaxHP), nl,
 	write('Attack  : '), write(Attack), nl,
 	write('Defense : '), write(Defense), nl,
-	write('Exp     : '), write(EXP), nl,
+	write('Exp     : '), write(EXP), write('/'), write(MaxEXP), nl,
 	write('Gold    : '), write(Gold), nl,
 	write('Equipped weapon    : '), write(Weapon), nl,
 	write('Equipped armor     : '), write(Armor), nl,

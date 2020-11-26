@@ -1,6 +1,4 @@
-:- dynamic(cannotRun/1).
 :- dynamic(isFighting/1).
-:- dynamic(isEnemyAlive/1).
 :- dynamic(enemySkillCooldown/1).
 :- dynamic(playerSkillCooldown/1).
 :- dynamic(triggeredEnemy/8). /** Musuh yang sedang dilawan. triggeredEnemy(Name, Level, MaxHP, HP, Attack, Defense, Gold_Drop, EXP_Drop) **/
@@ -30,11 +28,13 @@ enemyTriggered :-
 	asserta(triggeredEnemy(Name, NewLevel, MaxHP, NewHP, NewAttack, NewDefense, NewGold, NewEXP)),
 	write('Kamu menemukan '), write(Name), write(' liar dengan level '), write(NewLevel), nl,
 	write('Apa yang akan kamu lakukan?'), nl,
-	write('- fight'), nl,
+	write('- attack'), nl,
+	write('- skill'), nl,
+	write('- heal'), nl,
 	write('- run'), nl,
 	random(1, 10, P),
 	asserta(peluangRun(P)),
-	asserta(isEnemyAlive(1)),
+	asserta(isFighting(1)),
 	!.
 
 /** Player level 11-20 **/
@@ -55,11 +55,13 @@ enemyTriggered :-
 	asserta(triggeredEnemy(Name, NewLevel, MaxHP, NewHP, NewAttack, NewDefense, NewGold, NewEXP)),
 	write('Kamu menemukan '), write(Name), write(' liar dengan level '), write(NewLevel), nl,
 	write('Apa yang akan kamu lakukan?'), nl,
-	write('- fight'), nl,
+	write('- attack'), nl,
+	write('- skill'), nl,
+	write('- heal'), nl,
 	write('- run'), nl,
 	random(1, 15, P),
 	asserta(peluangRun(P)),
-	asserta(isEnemyAlive(1)),
+	asserta(isFighting(1)),
 	!.
 
 /** Player level 21-30 **/
@@ -80,11 +82,13 @@ enemyTriggered :-
 	asserta(triggeredEnemy(Name, NewLevel, MaxHP, NewHP, NewAttack, NewDefense, NewGold, NewEXP)),
 	write('Kamu menemukan '), write(Name), write(' liar dengan level '), write(NewLevel), nl,
 	write('Apa yang akan kamu lakukan?'), nl,
-	write('- fight'), nl,
+	write('- attack'), nl,
+	write('- skill'), nl,
+	write('- heal'), nl,
 	write('- run'), nl,
 	random(1, 20, P),
 	asserta(peluangRun(P)),
-	asserta(isEnemyAlive(1)),
+	asserta(isFighting(1)),
 	!.
 
 bossTriggered :-
@@ -93,78 +97,55 @@ bossTriggered :-
 	asserta(triggeredEnemy(Name, Level, MaxHP, HP, Attack, Defense, 0, 0)),
 	asserta(isFightingBoss(1)),
 	asserta(cannotRun(1)),
-	asserta(isEnemyAlive(1)),
+	asserta(isFighting(1)),
 	asserta(peluangRun(1)),
 	write('Kamu melawan boss '), write(Name), write(' dengan level '), write(Level), nl,
-	fight, !.
+	write('Apa yang akan kamu lakukan?'), nl,
+	write('- attack'), nl,
+	write('- skill'), nl,
+	write('- heal'), nl,
+	 !.
 
 run :-
-	\+isEnemyAlive(_),
+	\+isFighting(_),
 	write('Tidak ada monster di sekitar kamu'), nl,
 	!.
 
 run :-
-	\+ cannotRun(_),
-	isEnemyAlive(_),
-	peluangRun(P),
-	P > 5,
-	write('Kamu gagal lari'), nl,
-	fight,
+	isFightingBoss(_),
+	write('Kamu tidak bisa lari dari bos'), nl,
+	write('Semoga sudah persiapan ya..'), nl,
 	!.
 
 run :-
-	\+ cannotRun(_),
-	isEnemyAlive(_),
+	isFighting(_),
+	peluangRun(P),
+	P > 5,
+	write('Kamu gagal lari'), nl, nl,
+	retract(peluangRun(_)),
+	random(1, 15, NewP),
+	asserta(peluangRun(NewP)),
+	enemyTurn,
+	!.
+
+run :-
+	isFighting(_),
 	peluangRun(P),
 	P =< 5,
 	write('Kamu berhasil lari'), nl,
 	retract(peluangRun(P)),
-	retract(isEnemyAlive(_)),
+	retract(isFighting(_)),
 	retract(triggeredEnemy(_, _, _, _, _, _, _, _)),
 	!.
 
-run :-
-	cannotRun(_),
-	write('Kamu sudah gagal lari, semangat lawan monsternya!'), nl,
-	!.
-
-fight :-
-	\+isEnemyAlive(_),
-	write('Tidak ada monster di sekitar kamu'), nl,
-	!.
-
-fight :-
-	isFighting(_),
-	isEnemyAlive(_),
-	write('Kamu harus melawan monster itu'), nl,
-	!.
-
-fight :-
-	\+isFighting(_),
-	isEnemyAlive(_),
-	asserta(isFighting(1)),
-	asserta(cannotRun(_)),
-	retract(peluangRun(_)),
-	write('Semangat melawan monsternya!'), nl,
-	write('Kamu mau ngapain?'), nl,
-	write('- attack'), nl,
-	write('- skill'), nl,
-	write('- heal'), nl,
-	!.
 
 attack :-
-	\+ isEnemyAlive(_),
+	\+ isFighting(_),
 	write('Tidak ada monster di sekitar untuk diserang'), nl,
 	!.
 
 attack :-
-	isEnemyAlive(_),
-	\+ isFighting(_),
-	write('Fight dulu, baru serang'), nl,
-	!.
-
-attack :-
-	isEnemyAlive(_),
+	isFighting(_),
 	playerStatus(_, _, _, _, PlayerAttack, _, _, _),
 	triggeredEnemy(EnemyName, _, _, EnemyHP, _, EnemyDefense, _, _),
 	PlayerAttack > EnemyDefense,
@@ -178,7 +159,7 @@ attack :-
 	!.
 
 attack :-
-	isEnemyAlive(_),
+	isFighting(_),
 	playerStatus(_, _, _, _, PlayerAttack, _, _, _),
 	triggeredEnemy(EnemyName, _, _, EnemyHP, _, EnemyDefense, _, _),
 	PlayerAttack =< EnemyDefense,
@@ -192,14 +173,8 @@ attack :-
 	!.
 
 skill :-
-	\+ isEnemyAlive(_),
-	write('Tidak ada monster di sekitar untuk diserang'), nl,
-	!.
-
-skill :-
-	isEnemyAlive(_),
 	\+ isFighting(_),
-	write('Fight dulu, baru serang'), nl,
+	write('Tidak ada monster di sekitar untuk diserang'), nl,
 	!.
 
 skill :-
@@ -208,7 +183,7 @@ skill :-
 	!.
 
 skill :-
-	isEnemyAlive(_),
+	isFighting(_),
 	\+ playerSkillCooldown(_),
 	playerStatus(_, Class, _, _, PlayerAttack, _, _, _),
 	triggeredEnemy(EnemyName, _, _, EnemyHP, _, EnemyDefense, _, _),
@@ -226,7 +201,7 @@ skill :-
 	!.
 
 skill :-
-	isEnemyAlive(_),
+	isFighting(_),
 	\+ playerSkillCooldown(_),
 	playerStatus(_, Class, _, _, PlayerAttack, _, _, _),
 	triggeredEnemy(EnemyName, _, _, EnemyHP, _, EnemyDefense, _, _),
@@ -324,7 +299,7 @@ newEnemyCooldown :-
 	!.
 
 attackaftermath :-
-	isEnemyAlive(_),
+	isFighting(_),
 	triggeredEnemy(Name, _, _, HP, _, _, _, _),
 	HP > 0,
 	newPlayerCooldown,
@@ -341,8 +316,7 @@ attackaftermath :-
 	HP =< 0,
 	write(Name), write(' telah dikalahkan'), nl, nl,
 	retract(isFighting(_)),
-	retract(isEnemyAlive(_)),
-	retract(cannotRun(_)),
+	retract(peluangRun(_)),
 	(playerSkillCooldown(_) ->
 		retract(playerSkillCooldown(_))
 	;
@@ -362,7 +336,13 @@ attackaftermath :-
 		NewPlayerEXP is PlayerEXP + EXP,
 		asserta(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, NewPlayerGold, NewPlayerEXP)),
 		write('Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
-		write('Kamu mendapatkan '), write(EXP), write(' Exp'), nl
+		write('Kamu mendapatkan '), write(EXP), write(' Exp'), nl,
+		level(Lv, MaxExp),
+		(NewPlayerEXP >= MaxExp ->
+			levelUp
+		;
+			inventoryData(_,_)
+		)
 	),
 	!.
 
@@ -372,8 +352,7 @@ attackaftermath :-
 	HP =< 0,
 	write(Name), write(' telah dikalahkan'), nl, nl,
 	retract(isFighting(_)),
-	retract(isEnemyAlive(_)),
-	retract(cannotRun(_)),
+	retract(peluangRun(_)),
 	(playerSkillCooldown(_) ->
 		retract(playerSkillCooldown(_))
 	;
@@ -394,6 +373,12 @@ attackaftermath :-
 		asserta(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, NewPlayerGold, NewPlayerEXP)),
 		write('Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
 		write('Kamu mendapatkan '), write(EXP), write(' Exp'), nl, nl,
+		level(Lv, MaxExp),
+		(NewPlayerEXP >= MaxExp ->
+			levelUp
+		;
+			inventoryData(_,_)
+		),
 		questProgress(W, X, Y, Z, GoldQuest, Name)
 	),
 	!.
@@ -442,7 +427,7 @@ enemyAttack :-
 enemySkill :-
 	playerStatus(_, _, _, PlayerHP, _, PlayerDefense, _, _),
 	triggeredEnemy(Name, _, _, _, EnemyAttack, _, _, _),
-	EnemySkill is EnemyAttack * 2,
+	EnemySkill is EnemyAttack * 1.5,
 	EnemySkill >= PlayerDefense,
 	asserta(enemySkillCooldown(4)),
 	Damage is EnemySkill - PlayerDefense,
@@ -458,7 +443,7 @@ enemySkill :-
 enemySkill :-
 	playerStatus(_, _, _, PlayerHP, _, PlayerDefense, _, _),
 	triggeredEnemy(Name, _, _, _, EnemyAttack, _, _, _),
-	EnemySkill is EnemyAttack * 2,
+	EnemySkill is EnemyAttack * 1.5,
 	EnemySkill < PlayerDefense,
 	asserta(enemySkillCooldown(4)),
 	Damage is 1,
@@ -480,14 +465,14 @@ enemyattackaftermath :-
 	write('- attack'), nl,
 	write('- skill'), nl,
 	write('- heal'), nl,
+	write('- run'), nl,
 	!.
 
 enemyattackaftermath :-
 	playerStatus(_, _, _, PlayerHP, _, _, _, _),
 	PlayerHP =< 0,
 	retract(isFighting(_)),
-	retract(isEnemyAlive(_)),
-	retract(cannotRun(_)),
+	retract(peluangRun(_)),
 	write('Yah, kamu telah mati di dunia ini...'), nl,
 	write('Kamu akan bereinkarnasi ke dunia lain'), nl,
 	write('Selamat tinggal'), nl,
@@ -563,6 +548,26 @@ questProgress(W, X, Y, Z, Gold, Name) :-
 		questDone
 	).
 
+levelUp :-
+	playerStatus(PlayerLv, _, _, _, _, _, _, PlayerExp),
+	level(PlayerLv, X),
+	PlayerExp < X,
+	write('Kamu telah naik level menjadi lv. '), write(PlayerLv), nl, nl,
+	!.
+levelUp :-
+	playerStatus(PlayerLv, _, _, _, _, _, _, PlayerExp),
+	level(PlayerLv, X),
+	PlayerExp >= X,
+	retract(playerStatus(PlayerLv, Class, PlayerMaxHP, _, PlayerAttack, PlayerDefense, PlayerGold, PlayerExp)),
+	NextLv is PlayerLv + 1,
+	NewMaxHP is PlayerMaxHP + 30,
+	NewHP is NewMaxHP,
+	NewAttack is PlayerAttack + 8,
+	NewDefense is PlayerDefense + 3, 
+	asserta(playerStatus(NextLv, Class, NewMaxHP, NewHP, NewAttack, NewDefense, PlayerGold, PlayerExp)),
+	levelUp,
+	!
+	.
 
 
 

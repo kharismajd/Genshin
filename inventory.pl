@@ -4,7 +4,7 @@
 maxInventory(100).
 
 initInventory :-
-	asserta(inventoryData(0, plastic_sword)),
+	asserta(inventoryData(1, plastic_sword)),
 	asserta(inventoryData(0, wooden_sword)),
 	asserta(inventoryData(0, steel_sword)),
 	asserta(inventoryData(0, golden_sword)),
@@ -13,7 +13,7 @@ initInventory :-
 	asserta(inventoryData(0, steel_armor)),
 	asserta(inventoryData(0, golden_armor)),
 	asserta(inventoryData(0, crystal_armor)),
-	asserta(inventoryData(0, plastic_bow)),
+	asserta(inventoryData(1, plastic_bow)),
 	asserta(inventoryData(0, wooden_bow)),
 	asserta(inventoryData(0, steel_bow)),
 	asserta(inventoryData(0, golden_bow)),
@@ -22,7 +22,7 @@ initInventory :-
 	asserta(inventoryData(0, steel_shirt)),
 	asserta(inventoryData(0, golden_shirt)),
 	asserta(inventoryData(0, crystal_shirt)),
-	asserta(inventoryData(0, plastic_staff)),
+	asserta(inventoryData(1, plastic_staff)),
 	asserta(inventoryData(0, wooden_staff)),
 	asserta(inventoryData(0, steel_staff)),
 	asserta(inventoryData(0, golden_staff)),
@@ -31,7 +31,7 @@ initInventory :-
 	asserta(inventoryData(0, steel_robe)),
 	asserta(inventoryData(0, golden_robe)),
 	asserta(inventoryData(0, crystal_robe)),
-	asserta(inventoryData(0, potion)).
+	asserta(inventoryData(5, potion)).
 
 countInventory(Total) :-
    inventoryList(NumHeldList, _, _),

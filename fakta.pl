@@ -1,21 +1,53 @@
 /** enemy(id, name, level, hp, attack, defense, gold_drop, exp_drop) **/
-enemy(1, slime, 1, 125, 20, 10, 100, 100).
-enemy(2, goblin, 1, 200, 15, 15, 150, 150).
-enemy(3, wolf, 1, 175, 30, 30, 12, 200).
-enemy(4, undead, 1, 275, 10, 22, 250, 250).
+enemy(1, slime, 1, 125, 45, 10, 155, 100).
+enemy(2, goblin, 1, 175, 50, 15, 170, 150).
+enemy(3, wolf, 1, 150, 55, 12, 190, 200).
+enemy(4, undead, 1, 225, 35, 22, 220, 250).
 
 /** boss(id, name, level, hp, attack, defense) **/
-boss(1, undead_dragon, 30, 3000, 125, 100).
+boss(1, undead_dragon, 30, 3000, 100, 100).
 
 /** player(id, class, level, hp, attack, defense) **/
-player(1, swordsman, 1, 500, 40, 50).
-player(2, archer, 1, 400, 50, 25).
-player(3, sorcerer, 1, 400, 50, 25).
+player(1, swordsman, 1, 500, 70, 40).
+player(2, archer, 1, 450, 80, 30).
+player(3, sorcerer, 1, 400, 90, 25).
 
 /** harga(id, item_name, harga) **/
 harga(1, gacha, 100).
 harga(2, potion, 100).
-harga(3, dark_sigil, 1000).
+
+/** level(level, exp) **/
+level(1, 200).
+level(2, 400).
+level(3, 600).
+level(4, 800).
+level(5, 1000).
+level(6, 1200).
+level(7, 1400).
+level(8, 1600).
+level(9, 1800).
+level(10, 2000).
+level(11, 2200).
+level(12, 2400).
+level(13, 2600).
+level(14, 2800).
+level(15, 3000).
+level(16, 3200).
+level(17, 3400).
+level(18, 3600).
+level(19, 3800).
+level(20, 4000).
+level(21, 4200).
+level(22, 4400).
+level(23, 4600).
+level(24, 4800).
+level(25, 5000).
+level(26, 5200).
+level(27, 5400).
+level(28, 5600).
+level(29, 5800).
+level(30, 9999999).
+level(31, 10000000).
 
 /** items(id, class, type,  item_name, maxhp_boost, attack_boost, defense_boost) **/
 items(1, swordsman, weapon, plastic_sword, 0, 5, 0).
