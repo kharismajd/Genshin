@@ -23,6 +23,8 @@ help :-
 	write('# 8. inventory  : Melihat inventory                                  #'), nl,
 	write('# 9. drop       : Membuang barang yang ada di inventory              #'), nl,
 	write('# 10. heal      : Memakai potion untuk menambah HP                   #'), nl,
+	write('# 11. shop      : Membuka shop                                       #'), nl,
+	write('# 12. quest     : Mengambil sebauah quest                            #'), nl,
 	write('# Semua commands harus diakhiri dengan tanda titik (.)               #'), nl,
 	write('######################################################################'), nl.
 

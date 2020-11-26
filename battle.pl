@@ -5,10 +5,6 @@
 :- dynamic(playerStatus/8).
 :- dynamic(peluangRun/1).
 :- dynamic(isFightingBoss/1).
-:- dynamic(isOnQuest/5).
-
-initQuest :-
-	asserta(isOnQuest(1, 0, 0, 0, 0)).
 
 /** Player level 1-10 **/
 enemyTriggered :-
@@ -486,67 +482,12 @@ enemyattackaftermath :-
 	),
 	!.
 
-questDone :-
-	isOnQuest(_, _, _, _, Gold),
-	retract(playerStatus(Lv, Class, MaxHP, HP, Attack, Defense, PlayerGold, EXP)),
-	NewGold is PlayerGold + Gold,
-	asserta(playerStatus(Lv, Class, MaxHP, HP, Attack, Defense, NewGold, EXP)),
-	write('Kamu telah menyelesaikan quest!'), nl,
-	write('Kamu mendapatkan '), write(Gold), write(' gold'), nl,
-	!.
-
 bossDefeated :-
 	write('WOOOW, selamat! kamu telah mengalahkan boss dari game ini'), nl,
 	write('Para monster tidak akan bisa spawn lagi...'), nl,
 	write('Mungkin kehidupan setelah ini akan membosankan'), nl,
 	quit,
 	!.
-
-questProgress(W, X, Y, Z, Gold, Name) :-
-	(Name == slime ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewW is W - 1,
-		(NewW >= 0 ->
-			NewGold is Gold + 50
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(NewW, X, Y, Z, NewGold))
-	;
-	Name == goblin ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewX is X - 1,
-		(NewX >= 0 ->
-			NewGold is Gold + 100
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(W, NewX, Y, Z, Gold))
-	;
-	Name == wolf ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewY is Y - 1,
-		(NewY >= 0 ->
-			NewGold is Gold + 150
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(W, X, NewY, Z, Gold))
-	;
-	Name == undead ->
-		retract(isOnQuest(W, X, Y, Z, Gold)),
-		NewZ is Z - 1,
-		(NewZ >= 0 ->
-			NewGold is Gold + 200
-		;
-			NewGold is Gold
-		),
-		asserta(isOnQuest(W, X, Y, NewZ, Gold))
-	),
-	isOnQuest(WNew, XNew, YNew, ZNew, _),
-	((WNew =< 0, XNew =< 0, YNew =< 0, ZNew =< 0) ->
-		questDone
-	).
 
 levelUp :-
 	playerStatus(PlayerLv, _, _, _, _, _, _, PlayerExp),
@@ -568,27 +509,3 @@ levelUp :-
 	levelUp,
 	!
 	.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
