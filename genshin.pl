@@ -11,40 +11,48 @@
 :- include('quest.pl').
 
 help :-
-	write('######################################################################'), nl,
-	write('#                             ~Genshin Sekai~                        #'), nl,
-	write('# Commands:                                                          #'), nl,
-	write('# 1. start      : Untuk memulai petualanganmu                        #'), nl,
-	write('# 2. map        : Menampilkan peta                                   #'), nl,
-	write('# 3. status     : Menampilkan kondisi terkini                        #'), nl,
-	write('# 4. equip      : Memakai equipment                                  #'), nl,
-	write('# 5. help       : Menampilkan segala bantuan                         #'), nl,
-	write('# 6. quit       : Meninggalkan permainan                             #'), nl,
-	write('# 7. w,s,a,d    : Bergerak                                           #'), nl,
-	write('# 8. inventory  : Melihat inventory                                  #'), nl,
-	write('# 9. drop       : Membuang barang yang ada di inventory              #'), nl,
-	write('# 10. heal      : Memakai potion untuk menambah HP                   #'), nl,
-	write('# 11. shop      : Membuka shop                                       #'), nl,
-	write('# 12. quest     : Mengambil sebauah quest                            #'), nl,
-	write('# Semua commands harus diakhiri dengan tanda titik (.)               #'), nl,
-	write('######################################################################'), nl.
+	write('#################################################################################################'), nl,
+	write('#            ____                _     _         ___                       _                    #'), nl,
+	write('#           / ___| ___ _ __  ___| |__ (_)_ __   |_ _|_ __ ___  _ __   __ _| | ___   _           #'), nl,
+	write('#          | |  _ / _ |  _ \\/ __|  _ \\| |  _ \\   | ||  _ ` _ \\|  _ \\ / _` | |/ | | | |          #'), nl,
+	write('#          | |_| |  __| | | \\__ | | | | | | | |  | || | | | | | |_) | (_| |   <| |_| |          #'), nl,
+	write('#           \\____|\\___|_| |_|___|_| |_|_|_| |_| |___|_| |_| |_| .__/ \\__,_|_|\\_\\\\__,_|          #'), nl,
+	write('#                                                   |_|                                         #'), nl,
+	write('#                                                                                               #'), nl,
+	write('#                                                                                               #'), nl,
+	write('#                                           Commands:                                           #'), nl,
+	write('# ----------------------------------------------------------------------------------------------#'), nl,
+	write('#                        1. start      : Untuk memulai petualanganmu                            #'), nl,
+	write('#                        2. map        : Menampilkan peta                                       #'), nl,
+	write('#                        3. status     : Menampilkan kondisi terkini                            #'), nl,
+	write('#                        4. equip      : Memakai equipment                                      #'), nl,
+	write('#                        5. help       : Menampilkan segala bantuan                             #'), nl,
+	write('#                        6. quit       : Meninggalkan permainan                                 #'), nl,
+	write('#                        7. w,s,a,d    : Bergerak                                               #'), nl,
+	write('#                        8. inventory  : Melihat inventory                                      #'), nl,
+	write('#                        9. drop       : Membuang barang yang ada di inventory                  #'), nl,
+	write('#                        10. heal      : Memakai potion untuk menambah HP                       #'), nl,
+	write('#                        11. shop      : Membuka shop                                           #'), nl,
+	write('#                        12. quest     : Mengambil sebauah quest                                #'), nl,
+	write('#                        Semua commands harus diakhiri dengan tanda titik (.)                   #'), nl,
+	write('#################################################################################################'), nl.
 
 classSelect :-
-	write('Pilih class yang anda inginkan (tulis angka diakhiri titik): '), nl,
-	write('1. Swordsman'), nl,
-	write('2. Archer'), nl,
-	write('3. Sorcerer'), nl,
+	write('                  Pilih class yang anda inginkan (tulis angka diakhiri titik): '), nl,
+	write('                                         1. Swordsman'), nl,
+	write('                                         2. Archer'), nl,
+	write('                                         3. Sorcerer'), nl,
 	repeat,
 	(read(ID),
 	((ID >= 1, ID =< 3) -> 
 		player(ID, Class, Level, MaxHP, Attack, Defense),
 		HP is MaxHP,
-		write('Kamu telah memilih '), write(Class), nl,
+		write('                                Kamu telah memilih '), write(Class), nl,
 		asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, 1000, 0)),
 		asserta(equiped(none, none, none)),
 		asserta(koord(0,0)), /* Ganti dengan koordinat awal */
 		!
-	;	write('Silakan pilih yang ada di list.'), nl, 
+	;	write('                                Silakan pilih yang ada di list.'), nl, 
 		fail
 	)
 	).
