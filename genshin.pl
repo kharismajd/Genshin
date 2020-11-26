@@ -8,6 +8,7 @@
 :- include('explore.pl').
 :- include('battle.pl').
 :- include('map.pl').
+:- include('quest.pl').
 
 help :-
 	write('######################################################################'), nl,
