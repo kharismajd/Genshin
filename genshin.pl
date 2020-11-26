@@ -5,7 +5,6 @@
 :- include('fakta.pl').
 :- include('inventory.pl').
 :- include('shop.pl').
-:- include('battle.pl').
 :- include('explore.pl').
 
 help :-
@@ -74,7 +73,8 @@ quit :-
 	retractall(gold(_)),
 	retractall(playerStatus(_,_,_,_,_,_,_,_)),
 	retractall(equiped(_,_,_)),
-	retractall(init(_)).
+	retractall(init(_)),
+	!.
 quit :-
 	\+ init(_),
 	write('Game belum dimulai').

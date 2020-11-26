@@ -121,9 +121,21 @@ drop :-
 	(Num >= 0, Num =< ItemNum),
 	call(deleteItems(Item, Num))), !).
 
+
 equip :- 
 	\+init(_),
-	write('Game belum dimulai').
+	write('Game belum dimulai'), nl, !.
+equip :-
+	init(_),
+	equipmentList(_, EquipmentList, _),
+	length(EquipmentList, 0),
+	write('Kamu tidak memiliki equipment apapun'), nl, !.
+equip :-
+	init(_),
+	equipmentList(_, _, ClassList),
+	playerStatus(_, Class, _, _, _, _, _, _),
+	\+memberchk(Class, ClassList),
+	write('Kamu tidak memiliki equipment dengan class yang cocok'), nl, !.
 equip :-
 	init(_),
 	equipmentList(_, EquipmentList, _),

@@ -1,5 +1,6 @@
 :- dynamic(isAroundShop/1).
 :- dynamic(isInteracting/1).
+:- dynamic(isFighting/1).
 
 isAroundShop(1). /** Nanti hapus kalau udah ada map **/
 
