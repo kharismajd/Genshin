@@ -6,15 +6,18 @@ quest :-
 	!.
 
 quest :-
+	isOnQuest(_, _, _, _, _),
+	write('Kamu sudah mengambil quest'),
+	!.
+
+quest :-
+	\+isOnQuest(_, _, _, _, _),
 	isFighting(_),
 	write('Kamu sedang melawan monster'),
 	!.
 
 quest :-
-	isOnQuest(_, _, _, _, _),
-	write('Kamu sudah mengambil quest')
-
-quest :-
+	\+isOnQuest(_, _, _, _, _),
 	\+isAroundQuest,
 	write('Kamu terlalu jauh dari quest'),
 	!.
