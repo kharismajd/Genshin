@@ -31,7 +31,7 @@ quest :-
 	random(1, 3, Y),
 	random(1, 3, Z),
 	asserta(isOnQuest(W, X, Y, Z, 0)),
-	write('Quest: Kalahkan '), write(W), write(' slime '), write(X), write(' goblin '), write(Y), write(' wolf '), write(Z), write(' undead'). nl, nl,
+	write('Quest: Kalahkan '), write(W), write(' slime '), write(X), write(' goblin '), write(Y), write(' wolf '), write(Z), write(' undead'), nl, nl,
 	!.
 
 questDone :-

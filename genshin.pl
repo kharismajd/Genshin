@@ -67,7 +67,6 @@ start :-
 start :-
 	\+ init(_),
 	initInventory,
-	initKoord,
 	write('Selamat datang di Genshin'), nl,
 	help,
 	classSelect,

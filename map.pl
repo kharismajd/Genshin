@@ -19,7 +19,7 @@ special_lokasi(3, 7, '#').
 special_lokasi(3, 8, '#').
 special_lokasi(3, 9, '#').
 special_lokasi(2, 9, '#').
-special_lokasi(10,10, 'D').
+special_lokasi(10, 10, 'D').
 special_lokasi(5, 4, 'Q').
 special_lokasi(2, 2, 'S').
 
@@ -31,12 +31,6 @@ print_koord(X,_) :- map_size(Xm,_), X =:= Xm+2, !, write('#').
 print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+2, !, write('#').
 
 print_koord(X,Y) :- special_lokasi(X,Y,Z), !, write(Z).
-
-print_koord(X,Y) :- 
-	koord(XPlayer, YPlayer),
-	X == XPlayer,
-	Y == YPlayer, 
-	write('P').
 
 print_koord(X,Y) :-
     X > 0,
