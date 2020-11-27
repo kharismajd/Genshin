@@ -6,5 +6,8 @@
 - Hanif Arroisi 13519072
 - Kharisma 13519176
 
+# Prerequisite
+Download compiler GNU Prolog dan pastikan bisa dijalankan dengan metode apapun.
+
 # Cara menjalankan
 - Jalankan genshin.pl
