@@ -27,7 +27,7 @@ shop :-
 	(Input =:= 1 ->
 		playerStatus(_, _, _, _, _, _, X, _),
 		(X >= 300 ->
-			random(1, 27, ID),
+			random(1, 28, ID),
 			items(ID, _, _, ItemName, _, _, _),
 			addInventory(ID),
 			NewGold is X - 300,

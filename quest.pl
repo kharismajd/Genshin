@@ -24,12 +24,12 @@ quest :-
 
 quest :-
 	isAroundQuest,
-	\+isFighting,
+	\+isFighting(_),
 	\+isOnQuest(_, _, _, _, _),
-	random(1, 3, W),
-	random(1, 3, X),
-	random(1, 3, Y),
-	random(1, 3, Z),
+	random(1, 4, W),
+	random(1, 4, X),
+	random(1, 4, Y),
+	random(1, 4, Z),
 	asserta(isOnQuest(W, X, Y, Z, 0)),
 	write('Quest: Kalahkan '), write(W), write(' slime '), write(X), write(' goblin '), write(Y), write(' wolf '), write(Z), write(' undead'), nl, nl,
 	!.
@@ -63,7 +63,7 @@ questProgress(W, X, Y, Z, Gold, Name) :-
 		;
 			NewGold is Gold
 		),
-		asserta(isOnQuest(W, NewX, Y, Z, Gold))
+		asserta(isOnQuest(W, NewX, Y, Z, NewGold))
 	;
 	Name == wolf ->
 		retract(isOnQuest(W, X, Y, Z, Gold)),
@@ -73,7 +73,7 @@ questProgress(W, X, Y, Z, Gold, Name) :-
 		;
 			NewGold is Gold
 		),
-		asserta(isOnQuest(W, X, NewY, Z, Gold))
+		asserta(isOnQuest(W, X, NewY, Z, NewGold))
 	;
 	Name == undead ->
 		retract(isOnQuest(W, X, Y, Z, Gold)),
@@ -83,7 +83,7 @@ questProgress(W, X, Y, Z, Gold, Name) :-
 		;
 			NewGold is Gold
 		),
-		asserta(isOnQuest(W, X, Y, NewZ, Gold))
+		asserta(isOnQuest(W, X, Y, NewZ, NewGold))
 	),
 	isOnQuest(WNew, XNew, YNew, ZNew, _),
 	((WNew =< 0, XNew =< 0, YNew =< 0, ZNew =< 0) ->
