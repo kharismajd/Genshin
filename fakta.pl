@@ -1,11 +1,11 @@
 /** enemy(id, name, level, hp, attack, defense, gold_drop, exp_drop) **/
-enemy(1, slime, 1, 125, 45, 10, 155, 50).
-enemy(2, goblin, 1, 175, 50, 15, 170, 75).
-enemy(3, wolf, 1, 150, 55, 12, 190, 100).
-enemy(4, undead, 1, 225, 35, 22, 220, 125).
+enemy(1, slime, 1, 125, 55, 10, 155, 50).
+enemy(2, goblin, 1, 175, 60, 15, 170, 75).
+enemy(3, wolf, 1, 150, 65, 12, 190, 100).
+enemy(4, undead, 1, 225, 45, 22, 220, 125).
 
 /** boss(id, name, level, hp, attack, defense) **/
-boss(1, undead_dragon, 30, 3000, 100, 100).
+boss(1, undead_dragon, 30, 3000, 250, 100).
 
 /** player(id, class, level, hp, attack, defense) **/
 player(1, swordsman, 1, 500, 70, 40).
@@ -77,8 +77,11 @@ items(24, sorcerer, armor, wooden_robe, 50, 0, 10).
 items(25, sorcerer, armor, steel_robe, 75, 0, 15).
 items(26, sorcerer, armor, golden_robe, 100, 0, 25).
 items(27, sorcerer, armor, crystal_robe, 200, 0, 50).
-items(28, all, consumables, potion, 0, 0, 0).
-items(29, _, _, none, 0, 0, 0).
+items(28, swordsman, accessory, warrior_ring, 65, 15, 15).
+items(29, archer, accessory, archer_ring, 40, 25, 10).
+items(30, sorcerer, accessory, sorcerer_ring, 30, 35, 5).
+items(31, all, consumables, potion, 0, 0, 0).
+items(32, _, _, none, 0, 0, 0).
 
 /** playerSpecialAttack(job, name) **/
 playerSkill(swordsman, pukul).

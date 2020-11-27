@@ -331,8 +331,9 @@ attackaftermath :-
 		NewPlayerGold is PlayerGold + Gold,
 		NewPlayerEXP is PlayerEXP + EXP,
 		asserta(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, NewPlayerGold, NewPlayerEXP)),
-		write('Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
-		write('Kamu mendapatkan '), write(EXP), write(' Exp'), nl,
+		win,
+		write('                                    Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
+		write('                                    Kamu mendapatkan '), write(EXP), write(' Exp'), nl, nl,
 		level(Lv, MaxExp),
 		(NewPlayerEXP >= MaxExp ->
 			levelUp
@@ -367,8 +368,9 @@ attackaftermath :-
 		NewPlayerGold is PlayerGold + Gold,
 		NewPlayerEXP is PlayerEXP + EXP,
 		asserta(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, NewPlayerGold, NewPlayerEXP)),
-		write('Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
-		write('Kamu mendapatkan '), write(EXP), write(' Exp'), nl, nl,
+		win,
+		write('                                    Kamu mendapatkan '), write(Gold), write(' Gold'), nl,
+		write('                                    Kamu mendapatkan '), write(EXP), write(' Exp'), nl, nl,
 		level(Lv, MaxExp),
 		(NewPlayerEXP >= MaxExp ->
 			levelUp
@@ -469,9 +471,6 @@ enemyattackaftermath :-
 	PlayerHP =< 0,
 	retract(isFighting(_)),
 	retract(peluangRun(_)),
-	write('Yah, kamu telah mati di dunia ini...'), nl,
-	write('Kamu akan bereinkarnasi ke dunia lain'), nl,
-	write('Selamat tinggal'), nl,
 	(playerSkillCooldown(_) ->
 		retract(playerSkillCooldown(_))
 	;
@@ -480,12 +479,20 @@ enemyattackaftermath :-
 	;
 		inventoryData(_, _)
 	),
+	lose,
 	!.
 
 bossDefeated :-
-	write('WOOOW, selamat! kamu telah mengalahkan boss dari game ini'), nl,
-	write('Para monster tidak akan bisa spawn lagi...'), nl,
-	write('Mungkin kehidupan setelah ini akan membosankan'), nl,
+	write('                  :::   :::       :::     ::::    ::: ::::::::::: :::     :::::::::  :::    ::: '), nl,
+	write('                :+:+: :+:+:    :+: :+:   :+:+:   :+:     :+:   :+: :+:   :+:    :+: :+:    :+:  '), nl,
+	write('              +:+ +:+:+ +:+  +:+   +:+  :+:+:+  +:+     +:+  +:+   +:+  +:+    +:+ +:+    +:+   '), nl,
+	write('             +#+  +:+  +#+ +#++:++#++: +#+ +:+ +#+     +#+ +#++:++#++: +#++:++#+  +#+    +:+    '), nl,
+	write('            +#+       +#+ +#+     +#+ +#+  +#+#+#     +#+ +#+     +#+ +#+        +#+    +#+     '), nl,
+	write('           #+#       #+# #+#     #+# #+#   #+#+#     #+# #+#     #+# #+#        #+#    #+#      '), nl,
+	write('          ###       ### ###     ### ###    ####     ### ###     ### ###         ########        '), nl, nl,
+	write('                     WOOOW, selamat! kamu telah mengalahkan boss dari game ini'), nl,
+	write('                             Para monster tidak akan bisa spawn lagi...'), nl,
+	write('                           Mungkin kehidupan setelah ini akan membosankan'), nl,
 	quit,
 	!.
 
@@ -493,19 +500,39 @@ levelUp :-
 	playerStatus(PlayerLv, _, _, _, _, _, _, PlayerExp),
 	level(PlayerLv, X),
 	PlayerExp < X,
-	write('Kamu telah naik level menjadi lv. '), write(PlayerLv), nl, nl,
+	write('                                Kamu telah naik level menjadi lv. '), write(PlayerLv), nl, nl,
 	!.
 levelUp :-
 	playerStatus(PlayerLv, _, _, _, _, _, _, PlayerExp),
 	level(PlayerLv, X),
 	PlayerExp >= X,
-	retract(playerStatus(PlayerLv, Class, PlayerMaxHP, _, PlayerAttack, PlayerDefense, PlayerGold, PlayerExp)),
+	retract(playerStatus(PlayerLv, Class, PlayerMaxHP, HP, PlayerAttack, PlayerDefense, PlayerGold, PlayerExp)),
 	NextLv is PlayerLv + 1,
 	NewMaxHP is PlayerMaxHP + 30,
-	NewHP is NewMaxHP,
-	NewAttack is PlayerAttack + 8,
-	NewDefense is PlayerDefense + 3, 
-	asserta(playerStatus(NextLv, Class, NewMaxHP, NewHP, NewAttack, NewDefense, PlayerGold, PlayerExp)),
+	NewAttack is PlayerAttack + 6,
+	NewDefense is PlayerDefense + 2, 
+	asserta(playerStatus(NextLv, Class, NewMaxHP, HP, NewAttack, NewDefense, PlayerGold, PlayerExp)),
 	levelUp,
 	!
 	.
+
+win :-
+	write('             :::   :::  ::::::::  :::    :::        :::       ::: ::::::::::: ::::    ::: '), nl,
+	write('            :+:   :+: :+:    :+: :+:    :+:        :+:       :+:     :+:     :+:+:   :+:  '), nl,
+	write('            +:+ +:+  +:+    +:+ +:+    +:+        +:+       +:+     +:+     :+:+:+  +:+   '), nl,
+	write('            +#++:   +#+    +:+ +#+    +:+        +#+  +:+  +#+     +#+     +#+ +:+ +#+    '), nl,
+	write('            +#+    +#+    +#+ +#+    +#+        +#+ +#+#+ +#+     +#+     +#+  +#+#+#     '), nl,
+	write('           #+#    #+#    #+# #+#    #+#         #+#+# #+#+#      #+#     #+#   #+#+#      '), nl,
+	write('          ###     ########   ########           ###   ###   ########### ###    ####       '), nl, nl.
+
+lose :- 
+	write('             :::   :::  ::::::::  :::    :::          :::        ::::::::   ::::::::  :::::::::: '), nl,
+	write('            :+:   :+: :+:    :+: :+:    :+:          :+:       :+:    :+: :+:    :+: :+:         '), nl,
+	write('            +:+ +:+  +:+    +:+ +:+    +:+          +:+       +:+    +:+ +:+        +:+          '), nl,
+	write('            +#++:   +#+    +:+ +#+    +:+          +#+       +#+    +:+ +#++:++#++ +#++:++#      '), nl,
+	write('            +#+    +#+    +#+ +#+    +#+          +#+       +#+    +#+        +#+ +#+            '), nl,
+	write('           #+#    #+#    #+# #+#    #+#          #+#       #+#    #+# #+#    #+# #+#             '), nl,
+	write('          ###     ########   ########           ########## ########   ########  ##########       '), nl, nl,
+	write('                               Yah, kamu telah mati di dunia ini...'), nl,
+	write('                              Kamu akan bereinkarnasi ke dunia lain'), nl,
+	write('                                         Selamat tinggal'), nl.

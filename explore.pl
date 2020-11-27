@@ -75,4 +75,4 @@ isAroundQuest :-
     !.
 
 action :- isAroundBoss, !, bossTriggered.
-action :- random(1, 100, Enemy), Enemy < 35, enemyTriggered.
+action :- random(1, 100, Enemy), Enemy < 35, enemyTriggered, !.

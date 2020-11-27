@@ -31,6 +31,9 @@ initInventory :-
 	asserta(inventoryData(0, steel_robe)),
 	asserta(inventoryData(0, golden_robe)),
 	asserta(inventoryData(0, crystal_robe)),
+	asserta(inventoryData(0, warrior_ring)),
+	asserta(inventoryData(0, archer_ring)),
+	asserta(inventoryData(0, sorcerer_ring)),
 	asserta(inventoryData(5, potion)).
 
 countInventory(Total) :-
@@ -53,7 +56,7 @@ addInventory(_) :-
 	Number >= Max,
 	write('Inventory sudah penuh').
 addInventory(ID) :-
-	ID = 29.
+	ID = 32.
 addInventory(ID) :-
 	items(ID, _, _, Item, _, _, _),
 	inventoryData(Num, Item),
