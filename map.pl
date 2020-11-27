@@ -41,7 +41,7 @@ map :-
 	write('Game belum dimulai'), nl,
 	!.
 map :-
-	init(_).
+	init(_),
     map_size(Xm_,Ym_),
     Xm is Xm_+2, Ym is Ym_+2,
     forall(
