@@ -37,6 +37,11 @@ print_koord(X,Y) :- special_lokasi(X,Y,Z), !, write(Z).
 print_koord(_,_) :- write(' ').
 
 map :-
+	\+init(_),
+	write('Game belum dimulai'), nl
+	!.
+map :-
+	init(_),
     map_size(Xm_,Ym_),
     Xm is Xm_+2, Ym is Ym_+2,
     forall(
