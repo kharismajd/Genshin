@@ -1,4 +1,3 @@
-
 :- dynamic(special_lokasi/3).
 
 :- public(map_size/2).
@@ -34,16 +33,15 @@ print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+2, !, write('#').
 print_koord(X,Y) :- koord(X,Y), !, write('P').
 print_koord(X,Y) :- special_lokasi(X,Y,Z), !, write(Z).
 
-print_koord(X,Y) :-
-    X > 0,
-    Y > 0,
-    map_size(Xm,Ym),
-    X =< Xm+1,
-    Y =< Ym+1,
-    !, write('-').
+/* Default ke spasi */
+print_koord(_,_) :- write(' ').
 
 map :-
     map_size(Xm_,Ym_),
-    Xm is Xm_+2,
-    Ym is Ym_+2,
-    forall(between(0,Ym,Y),(forall(between(0,Xm,X),print_koord(X,Y)),nl)).
+    Xm is Xm_+2, Ym is Ym_+2,
+    forall(
+        between(0,Ym,Y),
+        (forall(
+            between(0,Xm,X),
+            print_koord(X,Y)
+        ), nl)).
