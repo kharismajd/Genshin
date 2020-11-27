@@ -1,8 +1,8 @@
 /** enemy(id, name, level, hp, attack, defense, gold_drop, exp_drop) **/
-enemy(1, slime, 1, 125, 45, 10, 155, 100).
-enemy(2, goblin, 1, 175, 50, 15, 170, 150).
-enemy(3, wolf, 1, 150, 55, 12, 190, 200).
-enemy(4, undead, 1, 225, 35, 22, 220, 250).
+enemy(1, slime, 1, 125, 45, 10, 155, 50).
+enemy(2, goblin, 1, 175, 50, 15, 170, 75).
+enemy(3, wolf, 1, 150, 55, 12, 190, 100).
+enemy(4, undead, 1, 225, 35, 22, 220, 125).
 
 /** boss(id, name, level, hp, attack, defense) **/
 boss(1, undead_dragon, 30, 3000, 100, 100).
@@ -19,33 +19,33 @@ harga(2, potion, 100).
 /** level(level, exp) **/
 level(1, 100).
 level(2, 200).
-level(3, 300).
-level(4, 400).
-level(5, 500).
-level(6, 700).
-level(7, 900).
-level(8, 1100).
-level(9, 1300).
-level(10, 1500).
-level(11, 1800).
-level(12, 2100).
-level(13, 2400).
-level(14, 2700).
-level(15, 3000).
-level(16, 3400).
-level(17, 3800).
-level(18, 4200).
-level(19, 4600).
-level(20, 5000).
-level(21, 5500).
-level(22, 6000).
-level(23, 6500).
-level(24, 7000).
-level(25, 7500).
-level(26, 8100).
-level(27, 8700).
-level(28, 9300).
-level(29, 9900).
+level(3, 400).
+level(4, 700).
+level(5, 1100).
+level(6, 1600).
+level(7, 2300).
+level(8, 3100).
+level(9, 4000).
+level(10, 5000).
+level(11, 6100).
+level(12, 7300).
+level(13, 8600).
+level(14, 10000).
+level(15, 11500).
+level(16, 13100).
+level(17, 14800).
+level(18, 16600).
+level(19, 18500).
+level(20, 20500).
+level(21, 22600).
+level(22, 24800).
+level(23, 27100).
+level(24, 29500).
+level(25, 32000).
+level(26, 34600).
+level(27, 37300).
+level(28, 40100).
+level(29, 43000).
 level(30, 9999999).
 level(31, 10000000).
 
@@ -83,7 +83,7 @@ items(29, _, _, none, 0, 0, 0).
 /** playerSpecialAttack(job, name) **/
 playerSkill(swordsman, pukul).
 playerSkill(archer, tendang).
-playerSkill(swordsman, hujan_air).
+playerSkill(sorcerer, hujan_air).
 
 /** enemySpecialAttack(enemy, name) **/
 enemySkill(slime, smol_water_cannon).
