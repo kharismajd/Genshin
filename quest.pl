@@ -31,7 +31,7 @@ quest :-
 	random(1, 4, Y),
 	random(1, 4, Z),
 	asserta(isOnQuest(W, X, Y, Z, 0, 0)),
-	write('Quest: Kalahkan '), write(W), write(' slime '), write(X), write(' goblin '), write(Y), write(' wolf '), write(Z), write(' undead'), nl, nl,
+	write('Quest: Kalahkan '), write(W), write(' slime, '), write(X), write(' goblin, '), write(Y), write(' wolf, '), write(Z), write(' undead'), nl, nl,
 	!.
 
 questDone :-
@@ -47,9 +47,7 @@ questDone :-
 	level(Lv, MaxExp),
 	(NewExp >= MaxExp ->
 			levelUp
-		;
-			inventoryData(_,_)
-		),
+	),
 	!.
 
 questProgress(W, X, Y, Z, Gold, Exp, Name) :-
@@ -105,3 +103,33 @@ questProgress(W, X, Y, Z, Gold, Exp, Name) :-
 	((WNew =< 0, XNew =< 0, YNew =< 0, ZNew =< 0) ->
 		questDone
 	).
+
+infoQuest :-
+	\+isOnQuest(_,_,_,_,_,_),
+	write('Kamu belum mengambil quest'), nl,
+	!.
+
+infoQuest :-
+	isOnQuest(W,X,Y,Z,_,_),
+	(W =< 0 ->
+		NewW is 0
+	;
+		NewW is W
+	),
+	(X =< 0 ->
+		NewX is 0
+	;
+		NewX is X
+	),
+	(Y =< 0 ->
+		NewY is 0
+	;
+		NewY is Y
+	),
+	(Z =< 0 ->
+		NewZ is 0
+	;
+		NewZ is Z
+	),
+	write('Quest: Kalahkan '), write(NewW), write(' slime, '), write(NewX), write(' goblin, '), write(NewY), write(' wolf, '), write(NewZ), write(' undead'), nl, nl,
+	!.

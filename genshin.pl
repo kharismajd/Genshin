@@ -38,7 +38,8 @@ help :-
 	write('#                        12. run       : GitGud                                                 #'), nl,
 	write('#                        13. heal      : Memakai potion untuk menambah HP                       #'), nl,
 	write('#                        14. shop      : Membuka shop                                           #'), nl,
-	write('#                        15. quest     : Mengambil sebauah quest                                #'), nl,
+	write('#                        15. quest     : Mengambil sebuah quest                                 #'), nl,
+	write('#                        16. infoQuest : Melihat info quest yang dijalankan                     #'), nl,
 	write('#                        Semua commands harus diakhiri dengan tanda titik (.)                   #'), nl,
 	write('#################################################################################################'), nl, nl.
 

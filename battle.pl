@@ -183,7 +183,7 @@ skill :-
 	\+ playerSkillCooldown(_),
 	playerStatus(_, Class, _, _, PlayerAttack, _, _, _),
 	triggeredEnemy(EnemyName, _, _, EnemyHP, _, EnemyDefense, _, _),
-	PlayerSkill is PlayerAttack * 2,
+	PlayerSkill is PlayerAttack * 1.5,
 	PlayerSkill > EnemyDefense,
 	Damage is PlayerSkill - EnemyDefense,
 	NewEnemyHP is EnemyHP - PlayerSkill + EnemyDefense,
@@ -201,7 +201,7 @@ skill :-
 	\+ playerSkillCooldown(_),
 	playerStatus(_, Class, _, _, PlayerAttack, _, _, _),
 	triggeredEnemy(EnemyName, _, _, EnemyHP, _, EnemyDefense, _, _),
-	PlayerSkill is PlayerAttack * 2,
+	PlayerSkill is PlayerAttack * 1.5,
 	PlayerSkill =< EnemyDefense,
 	Damage is 1,
 	NewEnemyHP is EnemyHP - 1,
@@ -337,8 +337,6 @@ attackaftermath :-
 		level(Lv, MaxExp),
 		(NewPlayerEXP >= MaxExp ->
 			levelUp
-		;
-			inventoryData(_,_)
 		)
 	),
 	!.
@@ -374,8 +372,6 @@ attackaftermath :-
 		level(Lv, MaxExp),
 		(NewPlayerEXP >= MaxExp ->
 			levelUp
-		;
-			inventoryData(_,_)
 		),
 		questProgress(W, X, Y, Z, GoldQuest, ExpQuest, Name)
 	),
