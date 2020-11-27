@@ -1,5 +1,3 @@
-:- dynamic(isInteracting/1).
-
 shop :-
 	\+init(_),
 	write('Permainan belum dimulai!'), nl,
@@ -24,7 +22,6 @@ shop :-
 	isAroundShop,
 	\+isFighting(_),
 	\+isFull,
-	asserta(isInteracting(1)),
 	printShop,
 	repeat,
 	(read(Input),
@@ -79,7 +76,6 @@ shop :-
 		)
 	;
 	Input =:= 3 ->
-		retract(isInteracting(_)),
 		write('Terima kasih telah berbelanja'), nl,
 		!
 	;	

@@ -533,6 +533,11 @@ lose :-
 	write('            +#+    +#+    +#+ +#+    +#+          +#+       +#+    +#+        +#+ +#+            '), nl,
 	write('           #+#    #+#    #+# #+#    #+#          #+#       #+#    #+# #+#    #+# #+#             '), nl,
 	write('          ###     ########   ########           ########## ########   ########  ##########       '), nl, nl,
-	write('                               Yah, kamu telah mati di dunia ini...'), nl,
-	write('                              Kamu akan bereinkarnasi ke dunia lain'), nl,
-	write('                                         Selamat tinggal'), nl.
+	write('                                Yah, kamu telah mati di dunia ini...'), nl,
+	write('                               Kamu akan bereinkarnasi ke dunia lain'), nl,
+	write('                                          Selamat tinggal'), nl,
+	write('                            Ketik start untuk memulai di dunia yang baru'), nl,
+	
+
+	quit,
+	!.

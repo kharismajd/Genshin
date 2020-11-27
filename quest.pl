@@ -40,9 +40,9 @@ questDone :-
 	NewGold is PlayerGold + Gold,
 	NewExp is PlayerExp + Exp, 
 	asserta(playerStatus(Lv, Class, MaxHP, HP, Attack, Defense, NewGold, NewExp)),
-	write('                           Kamu telah menyelesaikan quest!'), nl,
-	write('                              Kamu mendapatkan '), write(Gold), write(' gold'), nl,
-	write('                              Kamu mendapatkan '), write(Exp), write(' exp'), nl, nl,
+	write('                                 Kamu telah menyelesaikan quest!'), nl,
+	write('                                    Kamu mendapatkan '), write(Gold), write(' gold'), nl,
+	write('                                    Kamu mendapatkan '), write(Exp), write(' exp'), nl, nl,
 	retract(isOnQuest(_, _, _, _, _, _)),
 	level(Lv, MaxExp),
 	(NewExp >= MaxExp ->

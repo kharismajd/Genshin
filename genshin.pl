@@ -65,14 +65,16 @@ classSelect :-
 
 start :-
 	init(_),
-	write('Game sudah dimulai').
+	write('Game sudah dimulai'), nl,
+	!.
 start :-
 	\+ init(_),
 	initInventory,
 	write('Selamat datang di Genshin'), nl,
 	help,
 	classSelect,
-	asserta(init(1)).
+	asserta(init(1)),
+	!.
 
 status :- /** Kurang level up **/
 	playerStatus(Level, Class, MaxHP, HP, Attack, Defense, Gold, EXP),
@@ -93,11 +95,19 @@ status :- /** Kurang level up **/
 quit :-
 	init(_),
 	retractall(inventoryData(_,_)),
-	retractall(gold(_)),
 	retractall(playerStatus(_,_,_,_,_,_,_,_)),
 	retractall(equiped(_,_,_)),
 	retractall(init(_)),
+	retractall(isFighting(_)),
+	retractall(enemySkillCooldown(_)),
+	retractall(playerSkillCooldown(_)),
+	retractall(triggeredEnemy(_,_,_,_,_,_,_,_)),
+	retractall(peluangRun(_)),
+	retractall(isFightingBoss(_)),
+	retractall(isOnQuest(_,_,_,_,_,_)),
+	retractall(koord(_,_)),
 	!.
 quit :-
 	\+ init(_),
-	write('Game belum dimulai').
+	write('Game belum dimulai'), nl,
+	!.
