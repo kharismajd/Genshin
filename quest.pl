@@ -43,14 +43,17 @@ questDone :-
 	write('                                 Kamu telah menyelesaikan quest!'), nl,
 	write('                                    Kamu mendapatkan '), write(Gold), write(' gold'), nl,
 	write('                                    Kamu mendapatkan '), write(Exp), write(' exp'), nl, nl,
-	retract(isOnQuest(_, _, _, _, _, _)),
+	retractall(isOnQuest(_, _, _, _, _, _)),
 	level(Lv, MaxExp),
 	(NewExp >= MaxExp ->
-			levelUp
+		levelUp
+	;
+		inventoryData(_,_),
+		!
 	),
 	!.
 
-questProgress(W, X, Y, Z, Gold, Exp, Name) :-
+questProgress(Name) :-
 	(Name == slime ->
 		retract(isOnQuest(W, X, Y, Z, Gold, Exp)),
 		NewW is W - 1,
@@ -102,6 +105,9 @@ questProgress(W, X, Y, Z, Gold, Exp, Name) :-
 	isOnQuest(WNew, XNew, YNew, ZNew, _, _),
 	((WNew =< 0, XNew =< 0, YNew =< 0, ZNew =< 0) ->
 		questDone
+	;
+		inventoryData(_,_),
+		!
 	).
 
 infoQuest :-

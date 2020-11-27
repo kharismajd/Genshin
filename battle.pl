@@ -337,12 +337,15 @@ attackaftermath :-
 		level(Lv, MaxExp),
 		(NewPlayerEXP >= MaxExp ->
 			levelUp
+		;
+			inventoryData(_,_),
+			!
 		)
 	),
 	!.
 
 attackaftermath :-
-	isOnQuest(W, X, Y, Z, GoldQuest, ExpQuest),
+	isOnQuest(_, _, _, _, _, _),
 	triggeredEnemy(Name, _, _, HP, _, _, _, _),
 	HP =< 0,
 	write(Name), write(' telah dikalahkan'), nl, nl,
@@ -361,7 +364,7 @@ attackaftermath :-
 		retract(isFightingBoss(_)),
 		!
 	;
-		retract(triggeredEnemy(_, _, _, _, _, _, Gold, EXP)),
+		retract(triggeredEnemy(Name, _, _, _, _, _, Gold, EXP)),
 		retract(playerStatus(Lv, Class, MaxHP, PlayerHP, Attack, Defense, PlayerGold, PlayerEXP)),
 		NewPlayerGold is PlayerGold + Gold,
 		NewPlayerEXP is PlayerEXP + EXP,
@@ -372,8 +375,11 @@ attackaftermath :-
 		level(Lv, MaxExp),
 		(NewPlayerEXP >= MaxExp ->
 			levelUp
+		;
+			inventoryData(_,_),
+			!
 		),
-		questProgress(W, X, Y, Z, GoldQuest, ExpQuest, Name)
+		questProgress(Name)
 	),
 	!.
 
