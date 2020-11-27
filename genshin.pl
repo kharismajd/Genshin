@@ -31,11 +31,14 @@ help :-
 	write('#                        7. w,s,a,d    : Bergerak                                               #'), nl,
 	write('#                        8. inventory  : Melihat inventory                                      #'), nl,
 	write('#                        9. drop       : Membuang barang yang ada di inventory                  #'), nl,
-	write('#                        10. heal      : Memakai potion untuk menambah HP                       #'), nl,
-	write('#                        11. shop      : Membuka shop                                           #'), nl,
-	write('#                        12. quest     : Mengambil sebauah quest                                #'), nl,
+	write('#                        10. attack    : Serangan dasar kepada musuh                            #'), nl,
+	write('#                        11. skill     : Serangan kuat kepada musuh                             #'), nl,
+	write('#                        12. run       : GitGud                                                 #'), nl,
+	write('#                        13. heal      : Memakai potion untuk menambah HP                       #'), nl,
+	write('#                        14. shop      : Membuka shop                                           #'), nl,
+	write('#                        15. quest     : Mengambil sebauah quest                                #'), nl,
 	write('#                        Semua commands harus diakhiri dengan tanda titik (.)                   #'), nl,
-	write('#################################################################################################'), nl.
+	write('#################################################################################################'), nl, nl.
 
 classSelect :-
 	write('                  Pilih class yang anda inginkan (tulis angka diakhiri titik): '), nl,
@@ -47,7 +50,8 @@ classSelect :-
 	((ID >= 1, ID =< 3) -> 
 		player(ID, Class, Level, MaxHP, Attack, Defense),
 		HP is MaxHP,
-		write('                                Kamu telah memilih '), write(Class), nl,
+		write('                                   Kamu telah memilih '), write(Class), nl,
+		write('                        Selamat bersenang-senang di dunia Genshin Impaku'), nl,
 		asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, 1000, 0)),
 		asserta(equiped(none, none, none)),
 		asserta(koord(0,0)), /* Ganti dengan koordinat awal */
