@@ -30,6 +30,8 @@ print_koord(_,0) :- !, write('#').
 print_koord(X,_) :- map_size(Xm,_), X =:= Xm+2, !, write('#').
 print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+2, !, write('#').
 
+/* Player ditandai dengan P */
+print_koord(X,Y) :- koord(X,Y), !, write('P').
 print_koord(X,Y) :- special_lokasi(X,Y,Z), !, write(Z).
 
 print_koord(X,Y) :-
