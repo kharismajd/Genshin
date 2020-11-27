@@ -54,7 +54,7 @@ shop :-
 	Input =:= 2 ->
 		playerStatus(_, _, _, _, _, _, X, _),
 		(X >= 200 ->
-			addInventory(28),
+			addInventory(31),
 			NewGold is X - 200,
 			retract(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, X, EXP)),
 			asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, NewGold, EXP)),
