@@ -493,6 +493,10 @@ bossDefeated :-
 	!.
 
 levelUp :-
+	playerStatus(PlayerLv, _, _, _, _, _, _, _),
+	PlayerLv >= 30,
+	!.
+levelUp :-
 	playerStatus(PlayerLv, _, _, _, _, _, _, PlayerExp),
 	level(PlayerLv, X),
 	PlayerExp < X,

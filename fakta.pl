@@ -47,7 +47,6 @@ level(27, 37300).
 level(28, 40100).
 level(29, 43000).
 level(30, 9999999).
-level(31, 10000000).
 
 /** items(id, class, type,  item_name, maxhp_boost, attack_boost, defense_boost) **/
 items(1, swordsman, weapon, plastic_sword, 0, 5, 0).
