@@ -96,16 +96,19 @@ printEquipment :-
 
 inventory :-
 	\+init(_),
-	write('Game belum dimulai').
+	write('Game belum dimulai'), nl,
+	!.
 inventory :-
 	init(_),
 	inventoryList(NumHeldList, ItemList, ClassList),
 	write('Isi inventory: '), nl,
-	writeItems(NumHeldList, ItemList, ClassList).
+	writeItems(NumHeldList, ItemList, ClassList),
+	!.
 
 drop :-
 	\+init(_),
-	write('Game belum dimulai').
+	write('Game belum dimulai'), nl,
+	!.
 drop :-
 	init(_),
 	inventoryList(_, ItemList, _),
