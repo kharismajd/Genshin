@@ -307,7 +307,7 @@ attackaftermath :-
 	!.
 
 attackaftermath :-
-	\+ isOnQuest(_, _, _, _, _),
+	\+ isOnQuest(_, _, _, _, _, _),
 	triggeredEnemy(Name, _, _, HP, _, _, _, _),
 	HP =< 0,
 	write(Name), write(' telah dikalahkan'), nl, nl,
@@ -343,7 +343,7 @@ attackaftermath :-
 	!.
 
 attackaftermath :-
-	isOnQuest(W, X, Y, Z, GoldQuest),
+	isOnQuest(W, X, Y, Z, GoldQuest, ExpQuest),
 	triggeredEnemy(Name, _, _, HP, _, _, _, _),
 	HP =< 0,
 	write(Name), write(' telah dikalahkan'), nl, nl,
@@ -375,7 +375,7 @@ attackaftermath :-
 		;
 			inventoryData(_,_)
 		),
-		questProgress(W, X, Y, Z, GoldQuest, Name)
+		questProgress(W, X, Y, Z, GoldQuest, ExpQuest, Name)
 	),
 	!.
 
