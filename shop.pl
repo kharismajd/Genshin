@@ -2,19 +2,19 @@
 
 shop :-
 	\+init(_),
-	write('Game belum dimulai'), nl.
+	write('Permainan belum dimulai!'), nl.
 
 shop :-
 	isFighting(_),
-	write('Kamu sedang melawan monster'), nl.
+	write('Kamu sedang melawan monster!'), nl.
 
 shop :-
 	\+isAroundShop,
-	write('Kamu terlalu jauh dari shop'), nl.
+	write('Kamu terlalu jauh dari shop!'), nl.
 
 shop :-
 	isFull,
-	write('Inventory kamu penuh, drop item terlebih dahulu'), nl.
+	write('Inventory kamu penuh, drop item terlebih dahulu!'), nl.
 
 shop :-
 	isAroundShop,
@@ -35,10 +35,10 @@ shop :-
 			asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, NewGold, EXP)),
 			write('Anda mendapatkan '), write(ItemName), nl,
 			(isFull -> 
-				write('Inventory kamu penuh, terima kasih sudah berbelanja'), nl, !
+				write('Inventory kamu penuh, terima kasih sudah berbelanja!'), nl, !
 			;	
 				(NewGold < 200 ->
-					write('Gold anda tidak cukup untuk membeli apapun, terima kasih telah berbelanja'), nl, !
+					write('Gold anda tidak cukup untuk membeli apapun, terima kasih telah berbelanja!'), nl, !
 				;
 
 					write('Ingin belanja apa lagi?'), nl,
@@ -86,8 +86,8 @@ shop :-
 
 printShop :-
 	playerStatus(_, Class, _, _, _, _, _, _),
-	write('Selamat datang di shop, tuan '), write(Class), write('. anda ingin membeli apa?'), nl,
+	write('Selamat datang di shop, tuan '), write(Class), write('. Anda ingin membeli apa?'), nl,
 	write('1. Gacha'), nl,
 	write('2. Potion'), nl,
 	write('3. Exit'), nl,
-	write('Mohon pilih sesuai nomor.'), nl.
+	write('Mohon pilih sesuai nomor!.'), nl.
