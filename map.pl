@@ -26,8 +26,8 @@ special_lokasi(2, 2, 'S').
 
 print_koord(0,_) :- !, write('#').
 print_koord(_,0) :- !, write('#').
-print_koord(X,_) :- map_size(Xm,_), X =:= Xm+2, !, write('#').
-print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+2, !, write('#').
+print_koord(X,_) :- map_size(Xm,_), X =:= Xm+1, !, write('#').
+print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+1, !, write('#').
 
 /* Player ditandai dengan P */
 print_koord(X,Y) :- koord(X,Y), !, write('P').
@@ -43,7 +43,7 @@ map :-
 map :-
 	init(_),
     map_size(Xm_,Ym_),
-    Xm is Xm_+2, Ym is Ym_+2,
+    Xm is Xm_+1, Ym is Ym_+1,
     forall(
         between(0,Ym,Y),
         (forall(
