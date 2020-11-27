@@ -108,7 +108,7 @@ drop :-
 	write('Game belum dimulai').
 drop :-
 	init(_),
-	inventoryList(_, ItemList),
+	inventoryList(_, ItemList, _),
 	write('Ketik item yang ingin kamu buang!'), nl,
 	inventory,
 	repeat,
