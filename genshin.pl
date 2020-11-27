@@ -54,7 +54,7 @@ classSelect :-
 		write('                        Selamat bersenang-senang di dunia Genshin Impaku'), nl,
 		asserta(playerStatus(Level, Class, MaxHP, HP, Attack, Defense, 1000, 0)),
 		asserta(equiped(none, none, none)),
-		asserta(koord(0,0)), /* Ganti dengan koordinat awal */
+		asserta(koord(1,1)), /* Ganti dengan koordinat awal */
 		!
 	;	write('                                Silakan pilih yang ada di list.'), nl, 
 		fail
