@@ -5,7 +5,7 @@ enemy(3, wolf, 1, 150, 65, 12, 190, 100).
 enemy(4, undead, 1, 225, 45, 22, 220, 125).
 
 /** boss(id, name, level, hp, attack, defense) **/
-boss(1, undead_dragon, 30, 3000, 250, 100).
+boss(1, undead_dragon, 30, 5000, 300, 100).
 
 /** player(id, class, level, hp, attack, defense) **/
 player(1, swordsman, 1, 500, 70, 40).
