@@ -112,6 +112,12 @@ drop :-
 drop :-
 	init(_),
 	inventoryList(_, ItemList, _),
+	length(ItemList, 0),
+	write('Kamu tidak memiliki item apapun'), nl,
+	!.
+drop :-
+	init(_),
+	inventoryList(_, ItemList, _),
 	write('Ketik item yang ingin kamu buang!'), nl,
 	inventory,
 	repeat,
