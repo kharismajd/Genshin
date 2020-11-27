@@ -115,105 +115,197 @@ isValid(X,Y) :-
     X < Xm,
     Y < Ym.
 
-
 isAroundShop :-
 	koord(X, Y),
-	(
-		X == 1,
-		Y == 1
-	)
-	;
-	(
-		X == 1,
-		Y == 2
-	)
-	;
-	(
-		X == 1,
-		Y == 3
-	)
-	;
-	(
-		X == 2,
-		Y == 1
-	)
-	;
-	(
-		X == 2,
-		Y == 3
-	)
-	;
-	(
-		X == 3,
-		Y == 1
-	)
-	;
-	(
-		X == 3,
-		Y == 2
-	)
-	;
-	(
-		X == 3,
-		Y == 3
-	).
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop - 1,
+	YShop1 is YShop - 1,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop - 1,
+	YShop1 is YShop,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop - 1,
+	YShop1 is YShop + 1,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop,
+	YShop1 is YShop - 1,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop,
+	YShop1 is YShop + 1,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop + 1,
+	YShop1 is YShop - 1,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop + 1,
+	YShop1 is YShop,
+	X == XShop1,
+	Y == YShop1,
+	!.
+isAroundShop :-
+	koord(X, Y),
+	special_lokasi(XShop, YShop, 'S'),
+	XShop1 is XShop + 1,
+	YShop1 is YShop + 1,
+	X == XShop1,
+	Y == YShop1,
+	!.				
 
 isAroundBoss :-
 	koord(X, Y),
-	(
-		X == 9,
-		Y == 10
-	)
-	;
-	(
-		X == 9,
-		Y == 9
-	)
-	;
-	(
-		X == 10,
-		Y == 9
-	).
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss - 1,
+	YBoss1 is YBoss - 1,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss - 1,
+	YBoss1 is YBoss,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss - 1,
+	YBoss1 is YBoss + 1,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss,
+	YBoss1 is YBoss - 1,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss,
+	YBoss1 is YBoss + 1,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss + 1,
+	YBoss1 is YBoss - 1,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss + 1,
+	YBoss1 is YBoss,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
+isAroundBoss :-
+	koord(X, Y),
+	special_lokasi(XBoss, YBoss, 'D'),
+	XBoss1 is XBoss + 1,
+	YBoss1 is YBoss + 1,
+	X == XBoss1,
+	Y == YBoss1,
+	!.
 
 isAroundQuest :-
 	koord(X, Y),
-	(
-		X == 4,
-		Y == 3
-	)
-	;
-	(
-		X == 4,
-		Y == 5
-	)
-	;
-	(
-		X == 4,
-		Y == 6
-	)
-	;
-	(
-		X == 5,
-		Y == 3
-	)
-	;
-	(
-		X == 5,
-		Y == 6
-	)
-	;
-	(
-		X == 6,
-		Y == 3
-	)
-	;
-	(
-		X == 6,
-		Y == 4
-	)
-	;
-	(
-		X == 6,
-		Y == 5
-	).
-
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest - 1,
+	YQuest1 is YQuest - 1,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest - 1,
+	YQuest1 is YQuest,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest - 1,
+	YQuest1 is YQuest + 1,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest,
+	YQuest1 is YQuest - 1,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest,
+	YQuest1 is YQuest + 1,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest + 1,
+	YQuest1 is YQuest - 1,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest + 1,
+	YQuest1 is YQuest,
+	X == XQuest1,
+	Y == YQuest1,
+	!.
+isAroundQuest :-
+	koord(X, Y),
+	special_lokasi(XQuest, YQuest, 'Q'),
+	XQuest1 is XQuest + 1,
+	YQuest1 is YQuest + 1,
+	X == XQuest1,
+	Y == YQuest1,
+	!.	
