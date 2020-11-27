@@ -2,19 +2,23 @@
 
 shop :-
 	\+init(_),
-	write('Permainan belum dimulai!'), nl.
+	write('Permainan belum dimulai!'), nl,
+	!.
 
 shop :-
 	isFighting(_),
-	write('Kamu sedang melawan monster!'), nl.
+	write('Kamu sedang melawan monster!'), nl,
+	!.
 
 shop :-
 	\+isAroundShop,
-	write('Kamu terlalu jauh dari shop!'), nl.
+	write('Kamu terlalu jauh dari shop!'), nl,
+	!.
 
 shop :-
 	isFull,
-	write('Inventory kamu penuh, drop item terlebih dahulu!'), nl.
+	write('Inventory kamu penuh, drop item terlebih dahulu!'), nl,
+	!.
 
 shop :-
 	isAroundShop,
@@ -90,4 +94,5 @@ printShop :-
 	write('1. Gacha'), nl,
 	write('2. Potion'), nl,
 	write('3. Exit'), nl,
-	write('Mohon pilih sesuai nomor!.'), nl.
+	write('Mohon pilih sesuai nomor!.'), nl,
+	!.
