@@ -1,5 +1,6 @@
 
 :- dynamic(special_lokasi/3).
+:- dynamic(lokasi_player/3).
 
 :- public(map_size/2).
 :- public(map/0).
@@ -9,6 +10,9 @@ map_size(10,10).
 /* S = Lokasi store*/
 /* D = Lokasi Boss*/
 /* Q = Lokasi Quest*/
+
+/*lokasi_player(X,Y,P)*/
+lokasi_player(1, 1, 'P').
 
 /*special_lokasi(X,Y,OBJ) , X = Lebar, Y = Tinggi */
 special_lokasi(6, 5, '#').
@@ -31,7 +35,7 @@ print_koord(X,_) :- map_size(Xm,_), X =:= Xm+2, !, write('#').
 print_koord(_,Y) :- map_size(_,Ym), Y =:= Ym+2, !, write('#').
 
 /* Player ditandai dengan P */
-print_koord(X,Y) :- koord(X,Y), !, write('P').
+print_koord(X,Y) :- lokasi_player(X,Y,Z), !, write(Z).
 print_koord(X,Y) :- special_lokasi(X,Y,Z), !, write(Z).
 
 print_koord(X,Y) :-
