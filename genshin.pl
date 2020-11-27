@@ -112,3 +112,5 @@ quit :-
 	\+ init(_),
 	write('Game belum dimulai'), nl,
 	!.
+
+:- initialization(help).
